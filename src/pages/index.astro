@@ -12,11 +12,15 @@ import { sessionLabels, siteConfig } from "../site-config";
 //
 // 130 hours is one 6-unit course. Attempts = 130h / (time to failure + time to
 // retry), rounded to something honest rather than something precise.
+// Failure and retry are one column, not two. They are a pair — the loop is
+// their sum — and splitting them cost 130px of table width, which at 390px
+// pushed the attempts column, the only one the table exists to deliver, off
+// the right of the screen behind a scrollbar nobody is told about.
 const loops = [
-  { what: "A Souls boss", fail: "90 s", retry: "15 s", attempts: "~4,500" },
-  { what: "A ranked match", fail: "30 min", retry: "1 min", attempts: "~250" },
-  { what: "A weekly quiz", fail: "1 week", retry: "1 week", attempts: "12" },
-  { what: "An assignment", fail: "3 weeks", retry: "never", attempts: "3" },
+  { what: "A Souls boss", loop: "90 s → 15 s", attempts: "~4,500" },
+  { what: "A ranked match", loop: "30 min → 1 min", attempts: "~250" },
+  { what: "A weekly quiz", loop: "1 week → 1 week", attempts: "12" },
+  { what: "An assignment", loop: "3 weeks → never", attempts: "3" },
 ];
 ---
 
@@ -45,9 +49,8 @@ const loops = [
       <thead>
         <tr>
           <th scope="col">Loop</th>
-          <th scope="col">To failure</th>
-          <th scope="col">To retry</th>
-          <th scope="col">Attempts in 130 h</th>
+          <th scope="col">Failure &rarr; retry</th>
+          <th scope="col">Attempts in 130&nbsp;h</th>
         </tr>
       </thead>
       <tbody>
@@ -55,8 +58,7 @@ const loops = [
           loops.map((row) => (
             <tr>
               <th scope="row">{row.what}</th>
-              <td class="num">{row.fail}</td>
-              <td class="num">{row.retry}</td>
+              <td class="num">{row.loop}</td>
               <td class="num attempts">{row.attempts}</td>
             </tr>
           ))
@@ -149,8 +151,11 @@ const loops = [
     font-size: 0.9rem;
   }
 
-  /* Narrow viewports get a scroller rather than a squeezed four-column table;
-     the numeric columns stop being comparable the moment they wrap. */
+  /* The scroller is a fallback, not the plan. At 390px the wrapper is 354
+     wide and the table wants 540, which put the fourth column — the one the
+     whole table exists to deliver — off-screen behind a scroll nobody is
+     told about. So the table is allowed to shrink instead (below), and this
+     only catches whatever is left. */
   .loop-table-wrap {
     overflow-x: auto;
     margin-block: 1.5rem;
@@ -158,8 +163,37 @@ const loops = [
 
   .loop-table {
     width: 100%;
-    min-width: 30rem;
+    min-width: 24rem;
     border-collapse: collapse;
+  }
+
+  @media (width <= 34rem) {
+    .loop-table {
+      min-width: 0;
+      font-size: 0.9rem;
+    }
+
+    .loop-table th,
+    .loop-table td {
+      padding: 0.5rem 0.4rem;
+    }
+
+    .loop-table th:first-child,
+    .loop-table td:first-child {
+      padding-left: 0;
+    }
+
+    .loop-table th:last-child,
+    .loop-table td:last-child {
+      padding-right: 0;
+    }
+
+    /* Let the two-word column headings stack rather than force the table
+       wider than the screen to keep them on one line. */
+    .loop-table thead th {
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+    }
   }
 
   .loop-table caption {
@@ -195,17 +229,32 @@ const loops = [
   }
 
   /* The rightmost column is the punchline, so it is the only thing on the
-     table wearing the brand colour. */
+     table wearing the brand colour.
+
+     NOT `var(--at-primary)` straight, which is the lockup gold and lands at
+     3.44:1 on the light surface — under the 4.5:1 AA floor for text this size,
+     and 18px bold is just short of the 18.66px that would let it use the 3:1
+     large-text floor instead. axe passes it either way: it cannot resolve
+     `oklch()` inside `light-dark()`, so it reports the pair as incomplete
+     rather than failing. Measured, not assumed. Darkened for the light scheme
+     and lifted for the dark one, both derived from the brand hue so a brand
+     change still carries. */
   .loop-table .attempts {
-    color: var(--at-primary);
+    color: light-dark(
+      oklch(from var(--at-primary) 42% c h),
+      oklch(from var(--at-primary) 84% c h)
+    );
     font-weight: 700;
   }
 
+  /* The rule carries the brand colour here and the words do not: a 3px border
+     is decoration, so it is not held to a text-contrast floor, and the pull
+     quote reads at full strength instead of at 3.44:1. */
   .pull {
     margin-block: 1.5rem 2.5rem;
     padding-left: 1rem;
     border-left: 3px solid var(--at-primary);
-    color: var(--at-heading);
+    color: var(--at-text);
     font-size: 1.2rem;
     line-height: 1.5;
   }
