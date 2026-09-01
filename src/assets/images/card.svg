@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="SLOP3733: Turning Every Course You Take Into a Game">
+  <!-- The link-preview card. Literal colours on purpose: this is rasterised to
+       a JPEG for scrapers, so there is no theme to follow and no toggle to
+       survive. The values are the Slop palette — #b97d1c primary, #8a5c13
+       bronze, #6b6154 warm grey — on the dark ink the lockup is drawn for. -->
+  <rect width="1200" height="630" fill="#17140f"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#b97d1c"/>
+
+  <text x="80" y="132" font-family="Georgia, 'Times New Roman', serif" font-size="30" letter-spacing="6" fill="#b97d1c">SLOP3733</text>
+
+  <text x="80" y="236" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700" fill="#f4efe6">Turning Every Course</text>
+  <text x="80" y="318" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700" fill="#f4efe6">You Take Into a Game</text>
+
+  <line x1="80" y1="382" x2="1120" y2="382" stroke="#8a5c13" stroke-width="2"/>
+
+  <text x="80" y="440" font-family="Georgia, 'Times New Roman', serif" font-size="27" fill="#c9c0b2">130 hours, at four loop lengths — the chances you get to correct</text>
+
+  <g font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="27">
+    <text x="80"  y="512" fill="#8f8577">A Souls boss</text>
+    <text x="80"  y="560" fill="#b97d1c" font-size="46" font-weight="700">~4,500</text>
+
+    <text x="360" y="512" fill="#8f8577">A ranked match</text>
+    <text x="360" y="560" fill="#b97d1c" font-size="46" font-weight="700">~250</text>
+
+    <text x="640" y="512" fill="#8f8577">A weekly quiz</text>
+    <text x="640" y="560" fill="#6b6154" font-size="46" font-weight="700">12</text>
+
+    <text x="920" y="512" fill="#8f8577">An assignment</text>
+    <text x="920" y="560" fill="#6b6154" font-size="46" font-weight="700">3</text>
+  </g>
+
+  <text x="80" y="614" font-family="Georgia, 'Times New Roman', serif" font-size="21" fill="#6b6154">Slop University · Semester 1, 2027</text>
+</svg>

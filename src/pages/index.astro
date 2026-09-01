@@ -2,48 +2,131 @@
 import Card from "astro-theme-university/components/Card.astro";
 import CardGrid from "astro-theme-university/components/CardGrid.astro";
 import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
-import heroImage from "../assets/images/hero-home.avif";
 import { courseMeta } from "../course-config";
 import { sessionLabels, siteConfig } from "../site-config";
 
-// STARTER_CONTENT: replace the hero artwork and its alt text below, then
-// remove this comment.
+// No hero photograph. The template's artwork is a placeholder and the obvious
+// replacement — a stock lecture theatre, or something generated — would say
+// nothing this course is about. The arithmetic below is the argument, so it
+// gets the space instead.
+//
+// 130 hours is one 6-unit course. Attempts = 130h / (time to failure + time to
+// retry), rounded to something honest rather than something precise.
+const loops = [
+  { what: "A Souls boss", fail: "90 s", retry: "15 s", attempts: "~4,500" },
+  { what: "A ranked match", fail: "30 min", retry: "1 min", attempts: "~250" },
+  { what: "A weekly quiz", fail: "1 week", retry: "1 week", attempts: "12" },
+  { what: "An assignment", fail: "3 weeks", retry: "never", attempts: "3" },
+];
 ---
 
 <ContentLayout
   title={`${courseMeta.code}: ${courseMeta.title}`}
   description={courseMeta.description}
-  heroImage={heroImage}
-  heroImageAlt="A lecture theatre reduced to flat gold and black shapes, rows of seats sweeping past the frame, in a two-ink risograph print"
   {...siteConfig}
 >
   <ul class="course-tags" aria-label="Course tags">
     {courseMeta.tags.map((tag) => <li>{tag}</li>)}
   </ul>
 
-  <!-- STARTER_CONTENT: replace the authored page below, then remove this comment. -->
-  <h2>What you will do</h2>
+  <h2>The whole course in one table</h2>
+
   <p>
-    Say what a student spends their time on — the making, reading, arguing or
-    measuring that fills the weeks. Name the artefact they walk out with.
+    A six-unit course is about 130 hours. So is a Souls game. Nobody finishes
+    one of those on willpower, and the difference is not that games are fun —
+    it is how long you wait to find out you were wrong.
+  </p>
+
+  <div class="loop-table-wrap">
+    <table class="loop-table">
+      <caption>
+        Correction opportunities bought by 130 hours, at four loop lengths
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Loop</th>
+          <th scope="col">To failure</th>
+          <th scope="col">To retry</th>
+          <th scope="col">Attempts in 130 h</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          loops.map((row) => (
+            <tr>
+              <th scope="row">{row.what}</th>
+              <td class="num">{row.fail}</td>
+              <td class="num">{row.retry}</td>
+              <td class="num attempts">{row.attempts}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <p class="pull">
+    Same hours. Same person. Fifteen hundred times the chances to correct.
+  </p>
+
+  <h2>What you will do</h2>
+
+  <p>
+    Weeks 2&ndash;5 are the MOBA half: three clocks, a win condition per
+    contest, and a rating that survives between them. You take a thirty-minute
+    sitting and give every minute of it a job, first on paper and then in
+    whatever you can build.
+  </p>
+
+  <p>
+    Weeks 6&ndash;9 are the Souls half. A hundred hours of content becomes
+    finishable when it becomes nine fights that each end &mdash; and that is a
+    capacity no rating system can give you, however well you build it. Working
+    out why is the argument the course turns on.
+  </p>
+
+  <p>
+    Weeks 10&ndash;12 you point both at a subject you actively dislike, cover a
+    quarter of it in about thirty hours, and sit an exam we set on the part you
+    chose. Everything else you hand in is something you wrote about yourself.
+    That one isn&rsquo;t.
   </p>
 
   <h2>Who it is for</h2>
+
   <p>
-    Say who this is aimed at and what they need to already know. Be specific
-    enough that someone can rule themselves in or out without emailing you.
+    Anyone who has watched a semester go past without being able to say what
+    they did with it. There are no prerequisites and the reading is light, but
+    this is not a soft course: you will play two demanding games attentively,
+    ship a mechanism that survives you being tired, and then teach yourself
+    something you have already failed to start.
+  </p>
+
+  <p>
+    You do not need to write code. Two of the three assessments offer a
+    paper route and a built route, marked identically, and a paper system in
+    daily use beats an unfinished program every time.
   </p>
 
   <h2>Where to go next</h2>
   <CardGrid columns={2}>
+    <Card title="Lectures" href="/lectures/">
+      <p>The twelve weeks, and the argument each one is responsible for.</p>
+    </Card>
     <Card title={sessionLabels.plural} href="/sessions/">
-      <p>The weekly schedule and what happens in each teaching session.</p>
+      <p>
+        Two of them, in weeks 3 and 7, and both are spent playing. That is not
+        a joke.
+      </p>
     </Card>
     <Card title="Assessment" href="/assessments/">
-      <p>What is marked, what it is worth, and when it is due.</p>
+      <p>Two live demonstrations and one run at something you can&rsquo;t stand.</p>
     </Card>
-    <Card title="People" href="/people/">
-      <p>Who teaches the course and how to reach them.</p>
+    <Card title="Policies" href="/policies/">
+      <p>
+        Including why a different exam for every student is marked the way it
+        is.
+      </p>
     </Card>
   </CardGrid>
 </ContentLayout>
@@ -64,5 +147,66 @@ import { sessionLabels, siteConfig } from "../site-config";
     color: var(--at-text-secondary);
     background: var(--at-bg-alt);
     font-size: 0.9rem;
+  }
+
+  /* Narrow viewports get a scroller rather than a squeezed four-column table;
+     the numeric columns stop being comparable the moment they wrap. */
+  .loop-table-wrap {
+    overflow-x: auto;
+    margin-block: 1.5rem;
+  }
+
+  .loop-table {
+    width: 100%;
+    min-width: 30rem;
+    border-collapse: collapse;
+  }
+
+  .loop-table caption {
+    caption-side: bottom;
+    padding-top: 0.75rem;
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-sm);
+    text-align: left;
+  }
+
+  .loop-table th,
+  .loop-table td {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--at-border);
+    text-align: left;
+  }
+
+  .loop-table thead th {
+    color: var(--at-text-secondary);
+    font-size: var(--at-font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .loop-table tbody th {
+    font-weight: 600;
+  }
+
+  .loop-table .num {
+    font-family: var(--at-font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The rightmost column is the punchline, so it is the only thing on the
+     table wearing the brand colour. */
+  .loop-table .attempts {
+    color: var(--at-primary);
+    font-weight: 700;
+  }
+
+  .pull {
+    margin-block: 1.5rem 2.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--at-primary);
+    color: var(--at-heading);
+    font-size: 1.2rem;
+    line-height: 1.5;
   }
 </style>
