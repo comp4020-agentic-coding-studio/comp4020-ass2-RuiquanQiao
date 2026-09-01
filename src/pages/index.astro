@@ -211,8 +211,13 @@ const loops = [
     text-align: left;
   }
 
+  /* `--at-table-header-text`, not `--at-text-secondary`. The theme fills the
+     header row with the brand gold, and secondary text is mixed for the page
+     background, so pairing the two gave 2.42:1 — and it was invisible to me
+     twice, because both of my first two contrast probes resolved the header's
+     background as the page's instead of compositing the ancestor chain. */
   .loop-table thead th {
-    color: var(--at-text-secondary);
+    color: var(--at-table-header-text);
     font-size: var(--at-font-size-sm);
     font-weight: 600;
     text-transform: uppercase;
