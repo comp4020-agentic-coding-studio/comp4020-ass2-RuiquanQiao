@@ -58,8 +58,8 @@ I had the final assessment aimed at a subject the student *dislikes*; the course
 is about one they **stalled on and still need**
 ([`fdf9037`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-RuiquanQiao/commit/fdf9037)).
 And I had written the Souls half as planning — a hundred hours resolved into
-nine fights — when the whole point is that **nobody decomposes a boss they have
-never fought**. Ninety seconds holds one lesson, so the next attempt has one new
+"nine fights", a figure I had simply invented — when the whole point is that
+**nobody decomposes a boss they have never fought**. Ninety seconds holds one lesson, so the next attempt has one new
 goal, and the fight comes apart with no plan ever written. Decomposition is an
 output of the attempt cycle. That version had reached eight files
 ([`7613555`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-RuiquanQiao/commit/7613555)).

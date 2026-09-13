@@ -66,6 +66,22 @@ Some of what you find is small: a piece of notation, a tool you cannot drive, a
 definition you keep mis-remembering. Call those elite mobs, give them one line
 each and no ceremony, and do not let them become projects.
 
+The border between the two is genuinely blurred, and it is worth knowing that
+the games have the same problem. Sekiro has **13 bosses and 29 mini-bosses**,
+and several of those mini-bosses are mandatory and harder than the area boss
+they stand in front of. Dark Souls III has 19, or 25 counting its DLC, and the
+wikis argue about which non-respawning enemies belong on the list. Elden Ring
+needs **13** beaten to finish, has somewhere above 40 unique ones on a strict
+count, and around 238 boss encounters if you count every arena — a number
+inflated by the same enemy appearing in thirty catacombs.
+
+Nobody agrees on any of these figures, and that is the useful part: **if the
+designers cannot cleanly enumerate their own bosses, you are not going to
+enumerate yours in advance either.** The labels are a convenience for deciding
+how much ceremony something gets. They are not a taxonomy, and an hour spent
+sorting your list into bosses and elite mobs is an hour not spent attacking
+anything.
+
 ## Kill conditions, written when you can
 
 For each thing you are fighting, write the check that ends it — one sentence,

@@ -39,8 +39,13 @@ ever written. **Decomposition is an output of the attempt cycle, not an input
 to it** — which is precisely why it works on a subject too hard to start, where
 any plan written on day one is a guess off the table of contents.
 > ✗ *"A hundred hours becomes finishable once it is nine fights that each end."*
-> Top-down. It was in the syllabus commit, week 8, week 9, both Souls
-> assessments and a staff page before it was caught.
+> Top-down — and **"nine" was invented**, which is the same rule broken twice in
+> one sentence (see Numbers, below). The real counts make the opposite case:
+> Sekiro has 13 bosses and 29 mini-bosses, Dark Souls III 19 or 25, Elden Ring
+> 13 required and about 238 encounters, and no two sources agree. If the
+> designers cannot enumerate their own bosses, nobody is enumerating a subject's
+> in advance. This version reached the syllabus commit, week 8, week 9, both
+> Souls assessments and a staff page before it was caught.
 
 **4. The target is a stall, not an aversion.**
 Weeks 10–12 point both mechanisms at the course you **started, stopped,
@@ -167,13 +172,19 @@ and getting a grip on something too hard to start is the other half.
 
 ## Numbers
 
-**Every number on the site is one I can derive on request.** 130 hours is one
-6-unit course. The `~4,500` on the home page is 130 h ÷ (90 s + 15 s), rounded
-down and marked with a tilde. The card and the home-page table carry the same
+**Every number on the site is one I can derive or cite on request.** 130 hours
+is one 6-unit course. The `~4,500` on the home page is 130 h ÷ (90 s + 15 s),
+rounded and marked with a tilde. The card and the home-page table carry the same
 four numbers, from the same arithmetic, on purpose.
 
-If a number cannot be derived, it comes off the page. An adjective is better
-than a figure I invented.
+**I have broken this rule once, so it is not theoretical.** "Nine fights" was a
+number I made up because a sentence needed one, and it then sat in six files for
+a fortnight sounding authoritative. The counts it was standing in for are real,
+looked up, and disagree with each other — which turned out to be the more
+interesting fact and is now in week 8.
+
+If a number cannot be derived or sourced, it comes off the page. **An adjective
+is better than a figure I invented**, and "a handful" is an honest word.
 
 ---
 
