@@ -1,0 +1,243 @@
+---
+// The table above this, made movable. Same arithmetic, same four reference
+// points, so the slider cannot tell a different story from the table.
+//
+// The axis is WORK TIME per attempt, not calendar time — that is what makes
+// the weekly quiz land on 12 rather than on something meaningless. A week of a
+// 130-hour course is about 10.8 hours of actual work.
+//
+// Server-rendered at the default so the component says something true with no
+// JavaScript running, which is also how the build's accessibility pass sees it.
+const COURSE_SECONDS = 130 * 3600;
+const MIN = 10;
+const MAX = COURSE_SECONDS;
+// 10,000 rather than 1,000: at 1,000 the track cannot land closer than ~1.4%
+// to a reference point, so dragging to the "Souls boss" mark read ~4,400
+// against the table's ~4,500. A slider that disagrees with the table it sits
+// under is worse than no slider.
+const STEPS = 10000;
+const DEFAULT_SECONDS = 31 * 60; // a ranked match: 30 minutes plus the queue
+
+const toSlider = (s: number) =>
+  Math.round((Math.log(s / MIN) / Math.log(MAX / MIN)) * STEPS);
+
+const attemptsAt = (s: number) => COURSE_SECONDS / s;
+
+const formatAttempts = (n: number) =>
+  n < 1.5
+    ? "1"
+    : n < 20
+      ? String(Math.round(n))
+      : n < 1000
+        ? `~${Math.round(n / 10) * 10}`
+        : `~${(Math.round(n / 100) * 100).toLocaleString("en-AU")}`;
+
+const formatDuration = (s: number) => {
+  if (s < 150) return `${Math.round(s)} seconds`;
+  if (s < 5400) return `${Math.round(s / 60)} minutes`;
+  if (s < 36 * 3600) return `${(s / 3600).toFixed(1).replace(/\.0$/, "")} hours`;
+  return `${(s / (3600 * 10.8)).toFixed(1).replace(/\.0$/, "")} weeks of the course`;
+};
+
+const marks = [
+  { seconds: 105, label: "Souls boss" },
+  { seconds: 31 * 60, label: "ranked match" },
+  { seconds: Math.round(COURSE_SECONDS / 12), label: "weekly quiz" },
+  { seconds: Math.round(COURSE_SECONDS / 3), label: "assignment" },
+];
+---
+
+<figure class="loop-slider">
+  <label for="loop-input">
+    How long do you work before you find out you were wrong?
+  </label>
+
+  <input
+    type="range"
+    id="loop-input"
+    name="loop"
+    min="0"
+    max={STEPS}
+    value={toSlider(DEFAULT_SECONDS)}
+    aria-describedby="loop-result"
+    data-min={MIN}
+    data-max={MAX}
+    data-steps={STEPS}
+    data-course={COURSE_SECONDS}
+  />
+
+  <ul class="loop-marks" aria-hidden="true">
+    {
+      marks.map((m) => (
+        <li style={`--at-x:${(toSlider(m.seconds) / STEPS) * 100}%`}>{m.label}</li>
+      ))
+    }
+  </ul>
+
+  <p id="loop-result" class="loop-result" aria-live="polite">
+    <span class="loop-figure" data-figure>{formatAttempts(attemptsAt(DEFAULT_SECONDS))}</span>
+    <span class="loop-words">
+      chances to correct, across one 130-hour course, at
+      <span data-duration>{formatDuration(DEFAULT_SECONDS)}</span> per attempt.
+    </span>
+  </p>
+
+  <figcaption>
+    Drag it. The four labelled points are the four rows above — the arithmetic
+    is the same one, so nothing here can flatter the argument.
+  </figcaption>
+</figure>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>("#loop-input");
+  const figure = document.querySelector<HTMLElement>("[data-figure]");
+  const duration = document.querySelector<HTMLElement>("[data-duration]");
+  if (input && figure && duration) {
+    const MIN = Number(input.dataset.min);
+    const MAX = Number(input.dataset.max);
+    const STEPS = Number(input.dataset.steps);
+    const COURSE = Number(input.dataset.course);
+
+    const seconds = (v: number) => MIN * Math.pow(MAX / MIN, v / STEPS);
+
+    const formatAttempts = (n: number) =>
+      n < 1.5
+        ? "1"
+        : n < 20
+          ? String(Math.round(n))
+          : n < 1000
+            ? `~${Math.round(n / 10) * 10}`
+            : `~${(Math.round(n / 100) * 100).toLocaleString("en-AU")}`;
+
+    const formatDuration = (s: number) => {
+      if (s < 150) return `${Math.round(s)} seconds`;
+      if (s < 5400) return `${Math.round(s / 60)} minutes`;
+      if (s < 36 * 3600) return `${(s / 3600).toFixed(1).replace(/\.0$/, "")} hours`;
+      return `${(s / (3600 * 10.8)).toFixed(1).replace(/\.0$/, "")} weeks of the course`;
+    };
+
+    const render = () => {
+      const s = seconds(Number(input.value));
+      figure.textContent = formatAttempts(COURSE / s);
+      duration.textContent = formatDuration(s);
+    };
+
+    input.addEventListener("input", render);
+    render();
+  }
+</script>
+
+<style>
+  .loop-slider {
+    margin: 2rem 0 2.5rem;
+    padding: 1.25rem 1.25rem 1rem;
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-border-radius);
+    background: var(--at-bg-alt);
+  }
+
+  /* NOT `--at-heading`, which resolves to the lockup gold: at 18.9px/600 this
+     is not large text, so it takes the 4.5:1 floor and measured 3.16:1. The
+     third time I have reached for the brand colour as body-sized text. Weight
+     and size already make it read as a question; the colour was decoration. */
+  .loop-slider label {
+    display: block;
+    margin-bottom: 0.9rem;
+    color: var(--at-text);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .loop-slider input[type="range"] {
+    width: 100%;
+    margin: 0;
+    accent-color: var(--at-primary);
+  }
+
+  /* Labels sit under the positions their values occupy on the track, so the
+     four rows of the table are findable by dragging to them. Decorative — the
+     numbers they stand for are all in the table, which is why the list is
+     aria-hidden rather than duplicated for screen readers. */
+  .loop-marks {
+    position: relative;
+    height: 1.6rem;
+    margin: 0.35rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--at-font-size-xs);
+    color: var(--at-text-muted);
+  }
+
+  .loop-marks li {
+    position: absolute;
+    left: var(--at-x);
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .loop-marks li::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 0.35rem;
+    margin: 0 auto 0.15rem;
+    background: var(--at-border);
+  }
+
+  /* The first and last would hang off the ends of the box otherwise. */
+  .loop-marks li:first-child {
+    transform: none;
+  }
+
+  .loop-marks li:last-child {
+    transform: translateX(-100%);
+  }
+
+  .loop-result {
+    margin: 1.1rem 0 0.4rem;
+    line-height: 1.4;
+  }
+
+  .loop-figure {
+    display: block;
+    /* Derived from the brand hue rather than the lockup gold itself, which is
+       3.44:1 on the light surface — under the floor for anything but display
+       type, and this needs to survive being read as a number. */
+    color: light-dark(
+      oklch(from var(--at-primary) 42% c h),
+      oklch(from var(--at-primary) 84% c h)
+    );
+    font-family: var(--at-font-mono);
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .loop-words {
+    color: var(--at-text);
+  }
+
+  .loop-slider figcaption {
+    margin-top: 0.75rem;
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-sm);
+  }
+
+  @media (width <= 34rem) {
+    .loop-marks {
+      /* Four labels will not fit side by side; keep the two that anchor the
+         extremes of the argument. */
+      height: 1.4rem;
+    }
+
+    .loop-marks li:nth-child(2),
+    .loop-marks li:nth-child(3) {
+      display: none;
+    }
+
+    .loop-figure {
+      font-size: 2rem;
+    }
+  }
+</style>

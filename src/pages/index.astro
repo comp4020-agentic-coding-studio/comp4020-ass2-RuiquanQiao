@@ -2,6 +2,7 @@
 import Card from "astro-theme-university/components/Card.astro";
 import CardGrid from "astro-theme-university/components/CardGrid.astro";
 import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
+import LoopSlider from "../components/LoopSlider.astro";
 import { courseMeta } from "../course-config";
 import { sessionLabels, siteConfig } from "../site-config";
 
@@ -71,6 +72,13 @@ const loops = [
 
   <p class="pull">
     Same hours. Same person. Fifteen hundred times the chances to correct.
+  </p>
+
+  <LoopSlider />
+
+  <p>
+    The curve between those rows is the course. Everything from week 2 onwards
+    is about moving yourself leftward along it.
   </p>
 
   <h2>What you will do</h2>

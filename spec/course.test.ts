@@ -164,6 +164,17 @@ describe("the home page table", () => {
     }
   });
 
+  // The slider is the same argument made movable, so it must not be able to
+  // tell a different story. Its server-rendered default sits on the ranked
+  // match, which is also a row of the table; if the two ever disagree, one of
+  // them is lying and a reader has no way to tell which.
+  it("agrees with the slider's server-rendered default", () => {
+    const figure = html.match(/class="loop-figure"[^>]*>([^<]*)</)?.[1]?.trim();
+    const ranked = rows.find((r) => r.label === "A ranked match")!;
+    expect(figure, "slider default figure not found in dist/index.html").toBeTruthy();
+    expect(figure).toBe(ranked.attempts);
+  });
+
   it("ties the slow-loop rows to the course's own shape", () => {
     const quiz = rows.find((r) => r.label === "A weekly quiz")!;
     const assignment = rows.find((r) => r.label === "An assignment")!;
