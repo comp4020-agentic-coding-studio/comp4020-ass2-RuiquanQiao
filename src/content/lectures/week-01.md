@@ -17,7 +17,7 @@ related:
   - week-06
 ---
 
-Start from the fact this course exists because of.
+This course exists because of one lopsided fact, so we start there.
 
 Putting 130 hours into a game is easy. Nobody plans it, nobody forces
 themselves, nobody finishes a ranked season by gritting their teeth — you queue

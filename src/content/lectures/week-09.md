@@ -20,8 +20,11 @@ related:
   - week-11
 ---
 
-Second half is the second assessment. First half is the argument the whole
-course has been walking towards, so I want to put it plainly before we get to it.
+You have built both halves now, and the temptation is to think of them as two
+versions of the same thing. They are not, and using one where you needed the
+other is the most common way all of this falls apart.
+
+(The second half of today is the second assessment.)
 
 ## Two mechanisms, two jobs
 

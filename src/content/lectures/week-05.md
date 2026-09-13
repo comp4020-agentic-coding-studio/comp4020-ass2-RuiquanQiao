@@ -18,7 +18,11 @@ related:
   - week-09
 ---
 
-The second half of today is the first assessment: you show us the thing, running.
+You have a paper mechanism that makes a sitting usable. This week is the one
+thing paper cannot give you, and it is not convenience.
+
+(The second half of today is the first assessment: you show us the thing,
+running.)
 
 ## Why not just use a timer app
 
