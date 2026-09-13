@@ -1,0 +1,336 @@
+---
+import ContentLayout from "astro-theme-university/layouts/ContentLayout.astro";
+import { withBase } from "astro-theme-university/url";
+import { siteConfig } from "../../site-config";
+
+// Route B for Assessment 3. Deliberately the lesser route: the target that
+// tests what this course claims is one you have stalled on, and this instrument
+// cannot find that for you. It exists for people who genuinely cannot name a
+// stall, and the page says so twice rather than letting the toy imply otherwise.
+//
+// Two axes, three forced choices each, and it assigns the OPPOSITE of what you
+// answered. That is the whole rule, it is printed below, and it is deterministic
+// — which matters more here than sophistication, because a mechanism you cannot
+// state in a sentence is one you cannot argue with.
+//
+// No JavaScript required to read any of it: all four draws are on the page as
+// ordinary content, and the script only says which one is yours.
+const questions = [
+  {
+    id: "q1",
+    axis: "notation",
+    legend: "A page you have to get through. Which is worse?",
+    a: { label: "Four dense paragraphs of argument", pole: "prose" },
+    b: { label: "Four lines of notation", pole: "notation" },
+  },
+  {
+    id: "q2",
+    axis: "notation",
+    legend: "You are explaining something you understand well.",
+    a: { label: "You reach for a diagram or an equation", pole: "notation" },
+    b: { label: "You reach for an analogy and talk it through", pole: "prose" },
+  },
+  {
+    id: "q3",
+    axis: "notation",
+    legend: "Which mistake would embarrass you more?",
+    a: { label: "A sign error", pole: "notation" },
+    b: { label: "A sentence that does not mean what you thought", pole: "prose" },
+  },
+  {
+    id: "q4",
+    axis: "method",
+    legend: "The exam is next week and you are behind.",
+    a: { label: "Learn the handful of rules everything comes from", pole: "derive" },
+    b: { label: "Learn the cases, because the cases are what is asked", pole: "memorise" },
+  },
+  {
+    id: "q5",
+    axis: "method",
+    legend: "Someone hands you a table of exceptions.",
+    a: { label: "You want to know what they are exceptions to", pole: "derive" },
+    b: { label: "You start committing the table to memory", pole: "memorise" },
+  },
+  {
+    id: "q6",
+    axis: "method",
+    legend: "Which is the better compliment?",
+    a: { label: "“You never forget anything.”", pole: "memorise" },
+    b: { label: "“You can always work it out from first principles.”", pole: "derive" },
+  },
+];
+
+// key = what you PREFER; the draw is its opposite on both axes.
+const draws = [
+  {
+    key: "notation-derive",
+    prefers: "notation, and deriving from a few rules",
+    subject: "Medieval Latin palaeography",
+    why: "Prose all the way down, and almost nothing derives. You learn hands, abbreviations and scribal habits one at a time, and the only way to read the next manuscript is to have read enough of them. Nothing here can be worked out from first principles, which is exactly the move you said you reach for.",
+  },
+  {
+    key: "notation-memorise",
+    prefers: "notation, and holding a lot of particulars",
+    subject: "Moral philosophy",
+    why: "No notation to hide behind and nothing to memorise that will save you. The work is constructing an argument and then defending it against the best version of the objection, in prose, where being right is not the same as being able to show it.",
+  },
+  {
+    key: "prose-derive",
+    prefers: "prose, and deriving from a few rules",
+    subject: "Organic chemistry",
+    why: "Notation you cannot read aloud, and a mountain of particulars — reagents, conditions, the reactions that look identical and are not. There are principles underneath, and they will not spare you the memorising, which is the part you said you would rather route around.",
+  },
+  {
+    key: "prose-memorise",
+    prefers: "prose, and holding a lot of particulars",
+    subject: "Mathematical statistics",
+    why: "Symbols throughout, and knowing the results is worth very little: you are asked to derive them, and an examiner can tell instantly whether you did or recalled. The thing you are good at is the thing it does not reward.",
+  },
+];
+---
+
+<ContentLayout
+  title="The Draft"
+  description="A short instrument that assigns you a subject you are unlikely to enjoy — the fallback route for Assessment 3, for people who cannot name a stall."
+  {...siteConfig}
+>
+  <p class="lede">
+    Six forced choices. It assigns you the opposite of what you answer. This is
+    <strong>Route B</strong> for
+    <a href={withBase("/assessments/03-the-run/")}>Assessment&nbsp;3</a>, and it is the
+    lesser route on purpose.
+  </p>
+
+  <h2>Read this before you use it</h2>
+
+  <p>
+    The target that tests what this course claims is a subject you
+    <strong>stalled on and still need</strong> — started, stopped, restarted and
+    stopped again. This instrument cannot find that for you, because only you
+    know where you stopped.
+  </p>
+
+  <p>
+    What it can do is take the choice away from someone who genuinely cannot
+    name a stall, which is worth something: people asked to nominate a subject
+    they find hard reliably nominate one they secretly suspect they would be
+    good at. Both routes carry the same marks. The feedback on this one will say
+    which of the two questions it answered — <em>does the mechanism survive
+    material I have no appetite for</em> is a real question, and a different one
+    from <em>does it get me past a wall I have already failed at</em>.
+  </p>
+
+  <p>
+    It is not a psychometric instrument and we are not going to pretend
+    otherwise. It has two axes, six questions and one rule, all printed on this
+    page, and it will give the same answer every time.
+  </p>
+
+  <h2>The instrument</h2>
+
+  <form id="draft-form">
+    {
+      questions.map((q) => (
+        <fieldset>
+          <legend>{q.legend}</legend>
+          {[q.a, q.b].map((opt, i) => (
+            <div class="opt">
+              <input
+                type="radio"
+                id={`${q.id}-${i}`}
+                name={q.id}
+                value={opt.pole}
+                data-axis={q.axis}
+              />
+              <label for={`${q.id}-${i}`}>{opt.label}</label>
+            </div>
+          ))}
+        </fieldset>
+      ))
+    }
+  </form>
+
+  <p id="draft-result" class="draft-result" aria-live="polite" data-result>
+    Answer all six and your draw appears here. Without JavaScript, count your own
+    answers and read the rule below — it is four lines.
+  </p>
+
+  <h2>The rule</h2>
+
+  <p>
+    Three questions ask whether you would rather work in <strong>notation</strong>
+    or in <strong>prose</strong>. Three ask whether you would rather
+    <strong>derive</strong> from a few rules or <strong>memorise</strong> a lot
+    of particulars. Take the majority on each axis, flip both, and that is your
+    draw. Three questions per axis, so there is no tie to break and no
+    discretion anywhere in it.
+  </p>
+
+  <h2>The four draws</h2>
+
+  <dl class="draws">
+    {
+      draws.map((d) => (
+        <div data-draw={d.key}>
+          <dt>
+            <span class="draws-pref">If you prefer {d.prefers}</span>
+            <span class="draws-subject">{d.subject}</span>
+          </dt>
+          <dd>{d.why}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p>
+    Whichever you draw, the rest is unchanged: cut a coherent quarter, turn it
+    into bosses, and run it. See <a href={withBase("/lectures/week-10/")}>week&nbsp;10</a>.
+  </p>
+</ContentLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#draft-form");
+  const result = document.querySelector<HTMLElement>("[data-result]");
+
+  if (form && result) {
+    const draws = document.querySelectorAll<HTMLElement>("[data-draw]");
+
+    const update = () => {
+      const tally: Record<string, number> = {
+        notation: 0,
+        prose: 0,
+        derive: 0,
+        memorise: 0,
+      };
+      let answered = 0;
+      for (const input of form.querySelectorAll<HTMLInputElement>("input:checked")) {
+        tally[input.value] += 1;
+        answered += 1;
+      }
+
+      for (const d of draws) d.classList.remove("is-drawn");
+
+      if (answered < 6) {
+        result.textContent = `${6 - answered} to go.`;
+        return;
+      }
+
+      // Three questions per axis, so a strict majority always exists once all six
+      // are answered; the `else` branch is never reached by a complete form.
+      const axis1 = tally.notation > tally.prose ? "notation" : "prose";
+      const axis2 = tally.derive > tally.memorise ? "derive" : "memorise";
+      const key = `${axis1}-${axis2}`;
+
+      const drawn = document.querySelector<HTMLElement>(`[data-draw="${key}"]`);
+      const subject = drawn?.querySelector(".draws-subject")?.textContent ?? "";
+      drawn?.classList.add("is-drawn");
+      result.textContent = `You are drafted into ${subject}. It is highlighted below, with the reason.`;
+    };
+
+    form.addEventListener("change", update);
+    update();
+  }
+</script>
+
+<style>
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.5;
+  }
+
+  #draft-form {
+    margin: 1.5rem 0;
+  }
+
+  #draft-form fieldset {
+    margin: 0 0 1.1rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-border-radius);
+    background: var(--at-bg-alt);
+  }
+
+  #draft-form legend {
+    padding: 0 0.4rem;
+    color: var(--at-text);
+    font-weight: 600;
+  }
+
+  .opt {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.28rem 0;
+  }
+
+  .opt input {
+    accent-color: var(--at-primary);
+    /* The hit target should not be the 13px dot the platform draws. */
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+    align-self: center;
+  }
+
+  .opt label {
+    color: var(--at-text);
+    cursor: pointer;
+  }
+
+  .draft-result {
+    margin: 1.5rem 0 2rem;
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--at-primary);
+    background: var(--at-bg-alt);
+    color: var(--at-text);
+    font-size: 1.05rem;
+  }
+
+  .draws {
+    margin: 1.25rem 0 2rem;
+  }
+
+  .draws > div {
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-border-radius);
+    margin-bottom: 0.8rem;
+    /* Only the border and background move when a draw is picked; nothing here
+       relies on colour alone, and the result sentence names the subject in
+       words as well. */
+    transition: none;
+  }
+
+  .draws > div.is-drawn {
+    border-color: var(--at-primary);
+    background: var(--at-bg-alt);
+    box-shadow: inset 3px 0 0 var(--at-primary);
+  }
+
+  .draws dt {
+    margin-bottom: 0.4rem;
+  }
+
+  .draws-pref {
+    display: block;
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-sm);
+  }
+
+  .draws-subject {
+    display: block;
+    /* Derived from the brand hue, not the lockup gold itself, which is 3.44:1
+       on the light surface and fails at this size. */
+    color: light-dark(
+      oklch(from var(--at-primary) 42% c h),
+      oklch(from var(--at-primary) 84% c h)
+    );
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .draws dd {
+    margin: 0;
+    color: var(--at-text);
+  }
+</style>

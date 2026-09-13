@@ -42,7 +42,7 @@ testing is that a short enough loop gets you past a wall that willpower did not.
 
 **Pick the target** in week 10. Route A is to nominate your own, and it is the
 one that tests what the course claims: a stall you can evidence, plus a reason
-the material matters that does not depend on this course. Route B is the Draft,
+the material matters that does not depend on this course. Route B is [the Draft](/draft/),
 which assigns you a subject you are unlikely to enjoy, for people who genuinely
 cannot name a stall. Both are marked out of the same total; the feedback on B
 will say which of the two questions it answered. Locked once chosen.

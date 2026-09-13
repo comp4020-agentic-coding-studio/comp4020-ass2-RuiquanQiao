@@ -50,7 +50,7 @@ why willpower has not fixed it and why a mechanism might.
 what this course claims. You need two things: a stall you can evidence, and a
 reason the material matters that does not depend on this course.
 
-**Route B — the Draft.** A short forced-choice instrument that assigns you a
+**Route B — [the Draft](/draft/).** A short forced-choice instrument that assigns you a
 subject you are unlikely to enjoy, for people who genuinely cannot name a stall.
 It is not a psychometric instrument in any sense a psychologist would defend and
 we are not going to pretend otherwise; its value is that it takes the choice
