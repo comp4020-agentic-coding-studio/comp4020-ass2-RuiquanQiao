@@ -43,8 +43,9 @@ export const slopCourseMetaSchema = z
 //
 // Level 3, not 1. There are no prerequisites and the reading is light, but the
 // course asks you to play two demanding games attentively, ship a working
-// mechanism, and then teach yourself a quarter of a subject you dislike in
-// three weeks. That is third-year work in everything except its content.
+// mechanism, and then get a quarter of the way through a subject you have
+// already failed at, in three weeks. That is third-year work in everything
+// except its content.
 export const courseMeta = slopCourseMetaSchema.parse({
   code: "SLOP3733",
   title: "Turning Every Course You Take Into a Game",
@@ -57,6 +58,6 @@ export const courseMeta = slopCourseMetaSchema.parse({
     "A course is 130 hours. So is a Souls game, and nobody finishes one of " +
     "those on willpower. We take both reward structures apart — the ranked " +
     "ladder and the two-minute death loop — build one that fits your own " +
-    "week, then prove it on a subject you cannot stand.",
+    "week, then point it at the course you stalled on and still need.",
   tags: ["game mechanics", "study design", "motivation"],
 }) satisfies CourseMetaInput;

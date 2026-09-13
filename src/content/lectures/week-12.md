@@ -41,11 +41,18 @@ yourself.
 This is the hard half, and the honest answers are more interesting than the
 flattering ones.
 
-Some of you will have a good result and be unable to attribute it. You picked a
-subject you turned out to like; you had a light fortnight elsewhere; the
-mechanism ran for four days and then you just worked. Say so. A frank account of
-a confounded result is worth more here than a confident story, and confident
-stories are easy to spot because they never mention the weeks that didn't fit.
+Some of you will have a good result and be unable to attribute it. The wall
+turned out to be lower than you remembered; you had a light fortnight elsewhere;
+the mechanism ran for four days and then you just worked. Say so. A frank
+account of a confounded result is worth more here than a confident story, and
+confident stories are easy to spot because they never mention the weeks that
+didn't fit.
+
+The interesting failure is the opposite one, and some of you will have it: the
+mechanism ran faithfully for three weeks and you stalled in the same place you
+always stall. That is a result, it is worth full marks in this criterion if you
+can show it, and it is more useful to the person reading it than another
+success.
 
 The evidence you have is your logs: the verdict stream, the attempt lines, the
 boss tree with its dates. Argue from them. Show us the stretch where the

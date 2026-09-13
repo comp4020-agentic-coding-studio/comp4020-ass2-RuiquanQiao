@@ -56,7 +56,10 @@ already puts in the hours.
 
 That leaves the **ranked ladder** and the **boss gate**. The rest of the
 semester is those two, in that order, and the last three weeks are you running
-both at once on something you actively dislike.
+both at once on the course you stalled on and still need — the one you started,
+stopped, restarted and stopped again. Not a subject you dislike: that would be
+a cheap target, and getting through thirty hours of dull material proves much
+less than getting past a wall you have already failed at.
 
 ## Three systems that failed, and the number that ended them
 
