@@ -3,10 +3,10 @@
 ## What I decided a good course is
 
 One idea, held for twelve weeks, where failing is cheap and frequent enough that
-a student keeps going. Three things follow, and they are the positions the whole
-site is built on: **every week owes an argument of its own**; **assessment
-should measure output, not hours logged**; and **a mechanism that punishes a bad
-week will be abandoned in the first bad week**, which is the week it was for.
+a student keeps going. Three positions follow: **every week owes an argument of
+its own**; **assessment measures output, not hours logged**; and **a mechanism
+that punishes a bad week gets abandoned in the first bad week**, which is the
+week it was for.
 
 That is also the course's subject, which made the build reflexive: a course
 arguing for short feedback loops could not honestly be built on a long one.
@@ -14,12 +14,10 @@ arguing for short feedback loops could not honestly be built on a long one.
 ## What I encoded
 
 So the first thing I built was the loop, not the site. `pnpm check` did not run
-on this machine at all — two Windows-only theme bugs, one surfacing as axe
-failing `document-title` and reading exactly like markup I got wrong. I tested
-two explanations and threw both away before finding a path separator that
-shipped every `.mdx` page with no layout. An afternoon, and no site to show for
-it. The fix lives outside the repo on purpose: CI is Linux, and a dependency
-patch that fails to apply there turns the deploy red.
+on this machine at all — two Windows-only theme bugs, one of which surfaced as
+axe failing `document-title` and read exactly like markup I got wrong. Two
+explanations tested and thrown away before the real one: a path separator that
+shipped every `.mdx` page with no layout. An afternoon, no site to show for it.
 
 Then the positions themselves went into `CLAUDE.md` and `spec/`, because a
 position I only hold in my head is one I will trade away at midnight:
@@ -32,9 +30,9 @@ position I only hold in my head is one I will trade away at midnight:
   have been twelve pages of one paragraph
   ([`8ce8d70`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-RuiquanQiao/commit/8ce8d70)).
 - *Every number must be derivable* became assertions tying the home page's
-  figures to the course record — the quiz row must equal the number of teaching
-  weeks, the assignment row the number of assessments. Writing them caught my
-  own table mixing two different calculations under one heading.
+  figures to the course record: the quiz row must equal the teaching weeks, the
+  assignment row the assessments. Writing them caught my table mixing two
+  calculations under one heading.
 - *Colour must survive both schemes* became a rule after the table header shipped
   at **2.42:1**, which axe passes because it cannot resolve `oklch()` inside
   `light-dark()`
@@ -47,19 +45,27 @@ believe.
 ## What I left unencoded, deliberately
 
 Whether a week is *interesting*. The overlap assertion catches a duplicated week
-that was lightly reworded; it cannot catch a week that is merely dull, and I did
-not try to make it. Same for voice: `CLAUDE.md` bans exclamation marks and
-"level up your studies", which is a floor, not quality. Those stay human
-judgements because a test that pretended otherwise would let me stop looking.
+that was lightly reworded; it cannot catch one that is merely dull, and I did
+not try to make it. Same for voice. Those stay human judgements, because a test
+that pretended otherwise would let me stop looking.
 
 ## What directing this course changed
 
-The correction that mattered was not technical. I had built the final assessment
-around a subject the student *dislikes*, and Ruiquan's own framing was a subject
-they **stalled on and still need**
+The corrections that mattered were not technical, and both were the same
+mistake.
+
+I had the final assessment aimed at a subject the student *dislikes*; the course
+is about one they **stalled on and still need**
 ([`fdf9037`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-RuiquanQiao/commit/fdf9037)).
-Aversion is a cheap target: clearing thirty hours of dull material only shows the
-mechanism makes boredom tolerable. It also had the psychology backwards — people
-do not stall on things they want no part of. Six files had inherited the wrong
-premise. The course's own argument is what exposed it, which is the strongest
-evidence I have that the argument is load-bearing rather than decorative.
+And I had written the Souls half as planning — a hundred hours resolved into
+nine fights — when the whole point is that **nobody decomposes a boss they have
+never fought**. Ninety seconds holds one lesson, so the next attempt has one new
+goal, and the fight comes apart with no plan ever written. Decomposition is an
+output of the attempt cycle. That version had reached eight files
+([`7613555`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-RuiquanQiao/commit/7613555)).
+
+Both times I took the tidier, more symmetrical formulation over the blunter
+useful one — *games are hard too*; *break the mountain into nine pieces* — and
+both survived because they sounded like something. That is the failure mode I
+watch for now. Both were visible in an opening paragraph and nowhere else, which
+is an argument for reading rendered pages rather than diffs.

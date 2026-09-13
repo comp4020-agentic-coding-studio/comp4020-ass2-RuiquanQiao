@@ -7,18 +7,58 @@ makes it stick.
 
 ---
 
-## The course, in one paragraph, so nothing drifts
+## The claims, so nothing drifts
 
-The length of the failure loop is the variable that matters. The two genres
-solve **different halves** of it: the ranked ladder buys absolute focus inside
-thirty minutes and, over a semester, offers only encouragement through rank —
-it cannot break a large task into small ones. Decomposition lives in the Souls
-half, because a hundred hours becomes finishable once it is nine fights that
-each end. Weeks 2–5 build the first, 6–9 the second, 10–12 point both at a
-subject the student actively dislikes.
+Every page has to trace back to one of these. If it cannot, it does not belong
+on the site. Each has been got wrong at least once, and the wrong version is
+written next to it, because the wrong versions are plausible — that is why they
+survived.
 
-If a page cannot be traced back to that paragraph, it does not belong on the
-site.
+**1. The premise is an asymmetry, not a difficulty.**
+Putting 130 hours into a game is *easy*. Nobody plans it, nobody grits their
+teeth, you queue again. Putting the same 130 hours into a course is miserable.
+Same hours, same person — the only difference is how fast the activity pays you
+back, which is a design property and not a fact about anyone's character. So it
+can be built.
+> ✗ *"A course is 130 hours, so is a Souls game, and nobody finishes one of
+> those on willpower."* Argues that games are hard too, which is beside the
+> point and blunts the only comparison the site has.
+
+**2. The MOBA half is for using every minute.**
+It answers the specific complaint: you sit down for half an hour, or a morning,
+or a whole day; it is painful, you cannot get in, and nothing advances. A MOBA
+never allows it — waves every thirty seconds, a known price for leaving lane,
+objectives on a clock everyone can see. **There is never a minute in which the
+right thing to do is nothing.** Weeks 2–5 build that over your own sitting.
+
+**3. The Souls half is for getting started, and it is NOT planning.**
+Nobody decomposes a boss they have never fought. You die in ninety seconds;
+ninety seconds has room for exactly **one** observation, so the next attempt has
+exactly one new goal. Twenty attempts later the fight is dead and no plan was
+ever written. **Decomposition is an output of the attempt cycle, not an input
+to it** — which is precisely why it works on a subject too hard to start, where
+any plan written on day one is a guess off the table of contents.
+> ✗ *"A hundred hours becomes finishable once it is nine fights that each end."*
+> Top-down. It was in the syllabus commit, week 8, week 9, both Souls
+> assessments and a staff page before it was caught.
+
+**4. The target is a stall, not an aversion.**
+Weeks 10–12 point both mechanisms at the course you **started, stopped,
+restarted and stopped again, and still believe you need**. People do not stall
+on things they want no part of; wanting it was never the missing ingredient.
+> ✗ *"a subject you cannot stand."* Cheap target: clearing thirty hours of dull
+> material only shows the mechanism makes boredom tolerable.
+
+**How to check me against this, cheaply.** Both framing errors above were
+visible in an *opening paragraph* and nowhere else. In ascending cost: read the
+twelve lecture descriptions as one block; read the first paragraph of every
+content page; read the site. Nothing below can catch "this paragraph misses the
+point" — that stays a human judgement, and these claims exist to make the
+judgement fast rather than to automate it.
+
+**The tell.** When a sentence sounds cleverer than it is useful, it is probably
+drift. The right versions of all four claims above are blunter than the wrong
+ones.
 
 ---
 
@@ -41,9 +81,18 @@ next to `socialImage`. Slower, and it leaves the boundary intact.
 
 **Never write a literal colour in a component or a page.** Use the theme's
 semantic tokens — `--at-text`, `--at-text-secondary`, `--at-text-muted`,
-`--at-heading`, `--at-bg`, `--at-bg-alt`, `--at-border`, `--at-primary`. The
-theme derives all of them from three brand values, and it ships a light/dark
-toggle driven by `[data-theme="dark"]` on the root.
+`--at-bg`, `--at-bg-alt`, `--at-border`. The theme derives all of them from
+three brand values, and it ships a light/dark toggle driven by
+`[data-theme="dark"]` on the root.
+
+**`--at-primary` and `--at-heading` are the same lockup gold, and it measures
+3.44:1 on the light surface.** That is display-type-only: fine for an `h1` or
+`h2`, below the 4.5:1 floor for anything at body size, and 18px bold does *not*
+reach the 18.66px that would let it use the 3:1 large-text floor. I have reached
+for it as body-sized text three times — the table header (2.42:1), the attempts
+column and the slider label (3.16:1). For coloured text below display size,
+derive: `light-dark(oklch(from var(--at-primary) 42% c h), oklch(from
+var(--at-primary) 84% c h))`.
 
 A literal colour looks correct in whichever scheme I happened to be in and is
 wrong or invisible in the other. I have made exactly this mistake before, in
@@ -51,9 +100,26 @@ another project: an inset glow written as `rgba(99,102,241,…)` was the dark
 theme's accent hard-coded, so it showed up lavender in all three other themes,
 and three more literals were hiding in the same file.
 
-**Every visual change is checked in both schemes before it is committed**, by
-setting `document.documentElement.dataset.theme` and re-reading the computed
-value — not by looking at a screenshot.
+**Every visual change is checked in both schemes before it is committed** — and
+not by looking at a screenshot, which renders at the pane's physical size here
+and lies about everything geometric.
+
+Two things about *how* to check, both learned by getting a passing result I
+should not have trusted:
+
+- **Setting `document.documentElement.dataset.theme` does not re-resolve these
+  tokens.** `oklch(from …)` inside `light-dark()` stays on its old value, so
+  both schemes report identical numbers and everything looks fine. Click the
+  theme toggle in the footer and then **reload**. You know it worked when the
+  page background reads `rgb(7,5,4)` instead of the cream.
+- **Composite the whole ancestor background chain** before computing a ratio.
+  Walking up for the first non-transparent `background-color` and falling back
+  to the page is not enough: the table header has a gold fill of its own, and
+  that probe reported 8.92:1 for a pairing that was actually 2.42:1. Detect
+  opacity by painting a colour over white and then over black and comparing.
+
+**axe passing is not a contrast check.** It cannot resolve `oklch()` inside
+`light-dark()`, so it files those pairs as incomplete. It passed 2.42:1.
 
 One exception, and it is the only one: `src/assets/images/card.svg` uses literal
 hex. It is rasterised for link-preview scrapers, so there is no theme to follow
@@ -90,9 +156,12 @@ studio and cut it: twelve studios would have been twelve pages of the same
 paragraph. Weeks 3 and 7 are Labs because those are the two weeks where playing
 *is* the work.
 
-It is also why week 9 was rewritten. Its first version was "the Souls mechanism,
-but coded", which made it a mirror of week 5 and said nothing new. What it is
-actually for is the asymmetry above.
+It is also why week 9 has been rewritten twice. Its first version was "the Souls
+mechanism, but coded", a mirror of week 5 that said nothing new. Its second
+version had claim 3 backwards — it taught decomposition as something you author
+before you attack. What it is actually for is the division of labour: the ladder
+buys the inside of thirty minutes and offers nothing but encouragement past it,
+and getting a grip on something too hard to start is the other half.
 
 ---
 
