@@ -8,6 +8,7 @@ date: 2027-02-22T14:00:00+11:00
 teachers:
   - priya-vance
 spec:
+  - you can state the asymmetry this course starts from in one sentence, without using the word "motivation"
   - you can name six reward structures and say what each one needs in order to work
   - you can explain why four of them cannot be built by one student for one course
   - you can state the length of your own feedback loop in your current degree, in hours
@@ -15,6 +16,25 @@ related:
   - week-02
   - week-06
 ---
+
+Start from the fact this course exists because of.
+
+Putting 130 hours into a game is easy. Nobody plans it, nobody forces
+themselves, nobody finishes a ranked season by gritting their teeth — you queue
+again, and the hours go by. Putting the same 130 hours into a course is
+miserable, and most people cannot do it at all without a deadline standing over
+them.
+
+Same hours. Same person. Often the same week. **The only thing that differs is
+how quickly the activity pays you back**, and that is a design property, not a
+fact about your character. Which means it can be built.
+
+That is the entire course: build it, and finish a course the way you finish a
+game — a step at a time, absorbed, and without it costing everything you have.
+
+So: what exactly is a game paying you, and how much of it can you take?
+
+## Why the obvious version fails
 
 "Gamify your studies" almost always means points stapled to the outside of work
 that has not changed. You still sit down to the same undifferentiated three

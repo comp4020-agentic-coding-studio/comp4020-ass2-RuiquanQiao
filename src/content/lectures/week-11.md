@@ -1,8 +1,8 @@
 ---
 title: Both at once, and the ways your log will lie
 description:
-  Bosses give the route, matches give the sittings. The predictable failures of
-  a run's second week, and why your own records flatter you
+  Attempts find the fights, sittings do the work. The predictable failures of a
+  run's second week, and why your own records flatter you
 week: 11
 date: 2027-05-17T14:00:00+10:00
 teachers:
@@ -24,17 +24,18 @@ where these things break.
 ## Wiring the two together
 
 The arrangement is simple and you should be able to state it in a sentence:
-**bosses give the route, sittings give the work.**
+**attempts find the fights, sittings do the work.**
 
-Every sitting belongs to exactly one boss, declared before you start. That
-constraint is doing more than bookkeeping. A sitting that belongs to no boss is
+Every sitting attacks exactly one thing, named before you start. That constraint
+is doing more than bookkeeping. A sitting that attacks nothing in particular is
 the study equivalent of farming a lane in a game that has already been decided
 somewhere else — it feels productive, it produces a win in your log, and it
 moves nothing.
 
-If you find yourself wanting a sitting that fits no boss, that is real
-information: either you have found a boss you failed to name, or you are
-avoiding the ones you did.
+If you find yourself wanting a sitting that fits nothing on your list, that is
+real information, and usually good news: you have probably just found a fight
+you could not have named last week. Add it. The list is supposed to grow — a
+list that has not changed in a fortnight is one you are no longer reading.
 
 ## The failures of week two
 

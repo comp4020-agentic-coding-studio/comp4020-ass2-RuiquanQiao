@@ -54,8 +54,8 @@ stalled in the same place, that place goes in the cut — routing around it woul
 make the whole exercise pointless.
 
 **Run it** for weeks 10 to 12, with both mechanisms wired together as in week
-11 — bosses give the route, sittings give the work, and every sitting belongs
-to exactly one named boss.
+11 — attempts find the fights, sittings do the work, and every sitting attacks
+exactly one thing named before you start.
 
 **Sit the exam** in week 12.
 

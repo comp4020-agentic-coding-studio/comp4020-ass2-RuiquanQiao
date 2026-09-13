@@ -1,8 +1,9 @@
 ---
-title: "Assessment 2: a decomposition mechanism"
+title: "Assessment 2: getting a grip on something hard"
 description:
-  Turn a real subject into a sequence of defeatable bosses with attempt logs,
-  run it for a fortnight, and demonstrate it live
+  Attack a real subject before you understand it, take one lesson per attempt,
+  and let the list of what you are fighting grow out of that — run it for a
+  fortnight and demonstrate it live
 week: 9
 due: 2027-05-03T14:00:00+10:00
 weight: 25
@@ -14,17 +15,17 @@ marking:
     a boss splitting into three marks better than a tidy one that never met
     reality.
 spec:
-  - every boss has a kill condition a stranger could check
+  - you attacked something before you had a plan for it, and the log shows it
   - your attempt log carries one testable lesson per line, not one verdict about yourself
-  - at least one boss has been split, closed, or rewritten since you first wrote it
+  - at least one fight on your list is one you could not have named before you started
 related:
   - lectures/week-08
   - lectures/week-09
   - 01-lol-mechanism
 ---
 
-> Take something large enough to frighten you and turn it into a list of things
-> that each end.
+> Attack something you do not understand yet, and let it tell you what it is
+> made of.
 
 [Assessment 1](/assessments/01-lol-mechanism/) bought you the inside of thirty
 minutes. This one is the other half, and it is the half that decides whether a
@@ -44,16 +45,21 @@ two assessments is worth more to you than doing your comfortable one twice.
 
 ## What it has to do
 
-- **Bosses that are defeatable.** Specific, and with a kill condition written in
-  advance that somebody else could check. Six to ten of them, not forty.
-- **Tells.** For each boss, how you will recognise the failure when it happens —
-  the shape of the wrongness, not the fact of it.
-- **An attempt log.** One line per attempt, each naming something about the
-  work rather than something about your character. *I was lazy* is not a line.
-- **Roll-up.** A boss's remaining work includes its children's, or the tree
-  flatters you.
-- **No fixed durations.** Estimate the work and let the time fall out of it. A
-  length you commit to in advance turns a campaign into a sentence.
+- **An attempt log.** The centre of it. One entry per attempt: what you
+  attacked, the one lesson, the one change for next time. Each lesson names
+  something about the work rather than about your character — *I was lazy* is
+  not a line, because no attempt can settle it.
+- **A list of fights that grew.** Not one you wrote on day one. We will ask
+  which entries you could not have named before you started, and a list with no
+  such entries is a table of contents.
+- **Kill conditions, where you have earned them.** One checkable sentence per
+  fight, written once you have attempted enough to know what winning looks
+  like. A fight without one eventually stays open forever, which is how this
+  mechanism usually dies.
+- **Roll-up.** A fight's remaining work includes anything it turned out to
+  contain, or the record flatters you.
+- **No fixed durations.** Let the time fall out of the work. A length committed
+  to in advance turns a campaign into a sentence.
 
 ## What you submit
 

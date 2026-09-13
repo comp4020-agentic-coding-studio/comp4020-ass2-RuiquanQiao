@@ -97,7 +97,10 @@ One exception worth taking seriously: if your stall has always happened at the
 same place, that place goes in the cut. Routing around it would make the whole
 exercise pointless.
 
-Then turn it into bosses, exactly as in week 8. Six to ten.
+Do **not** then sit down and break that quarter into a tidy list of fights. You
+have not attacked it yet, so you do not know what its parts are; that is the
+mistake week 8 exists to stop. Pick the first thing you can attempt this week,
+attack it, and let the rest of the list arrive the way it did last week.
 
 ## The baseline
 

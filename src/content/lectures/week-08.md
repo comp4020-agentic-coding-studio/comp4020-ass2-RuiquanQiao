@@ -1,72 +1,96 @@
 ---
-title: Bosses and elite mobs, on paper
+title: Attacking before you understand it
 description:
-  Naming a defeatable obstacle, giving it tells and a kill condition, and why
-  this is what makes a hard subject stop hurting
+  The paper version of the Souls loop — attack, take the one lesson, go again —
+  and how the list of what you are fighting grows out of that rather than
+  before it
 week: 8
 date: 2027-04-26T14:00:00+10:00
 teachers:
   - yuki-aaltonen
 spec:
-  - each of your bosses is a specific thing that can be finished, and you can say how you would know
-  - you can tell a boss from an elite mob and from a thing that is merely long
-  - your attempt log carries one testable lesson per line
+  - you attacked something before you had a plan for it, and logged what happened
+  - your attempt log carries one testable lesson per line, not one verdict about yourself
+  - the things you are fighting have names you could only have written after attacking
 related:
   - week-07
   - week-09
   - assessments/02-souls-mechanism
 ---
 
-Take the thing you are supposed to be learning and turn it into a sequence of
-fights.
+Last week you died to a boss twenty times and came out understanding a fight you
+could not have described beforehand. This week you do the same thing to a
+subject.
 
-## Naming a boss
+## You cannot plan what you have not attacked
 
-A boss is a **specific, defeatable obstacle**. Three tests:
+The instinct with a hard subject is to sit down and break it into parts first.
+It feels responsible. It is also the move that has failed you before, and here
+is why: **on day one you do not know enough about the subject to know what its
+parts are.** Any list you write is a guess assembled out of the table of
+contents, and a confident wrong plan is worse than no plan, because you will
+follow it.
 
-- Could you know it was over? "Get good at statistics" fails. "Derive the
-  normal equations from scratch without looking" passes.
-- Is failure survivable and repeatable? A boss you can attempt once is an exam,
-  not a boss.
-- Does it stay still? If the target moves every time you look at it, you cannot
-  build a model of it, and you will feel the same helplessness you felt in the
-  first ten attempts of week 7 — permanently.
+Nobody walks up to a Souls boss and decomposes it. You go through the fog, you
+die, and the fight tells you what it is made of.
 
-## Tells and the kill condition
+## The loop, on paper
 
-For each boss write two things.
+Four lines and nothing else:
 
-**The tells**: how you will recognise the failure when it happens. Not "I got it
-wrong" — the shape of the wrongness. *I can follow the derivation when I read it
-and cannot start it from a blank page.* That sentence is a tell, and it tells
-you the next attempt should start from a blank page.
+1. **What I am attacking now.** One thing, and small enough to attempt today.
+   Not "understand regression" — *derive the normal equations from a blank
+   page*.
+2. **The attempt.** Short. Short enough that you find out today, not next week.
+3. **The one lesson.** One sentence, and it has to be about the work, not about
+   you. *I can follow the derivation and cannot start it* is a lesson. *I was
+   lazy* is not — there is no next attempt that confirms or denies it.
+4. **The one change for next time.** Exactly one. If you write three, you will
+   not know which of them worked.
 
-**The kill condition**: the check that ends the fight. Written in advance, in
-one sentence, checkable by someone who is not you. Bosses without kill
-conditions are how a subject expands to fill the semester.
+Then go again. That is the whole mechanism, and it is deliberately too small to
+be impressive.
 
-## Elite mobs
+## The list grows; you do not write it
 
-Not every hard thing is a boss. An elite mob is a smaller blocker on the way to
-one — a piece of notation, a tool you can't drive, a definition you keep
-mis-remembering. They get one line each and no ceremony. The distinction is
-useful because treating every obstacle as a boss produces a plan with forty
-bosses in it, which is a plan you will look at once.
+You will name things as you go. By attempt five it becomes clear that the reason
+you cannot start from a blank page is that you never learned to write down what
+you are minimising — and now you have a second thing to attack, one you could
+not have put on a list on Monday.
 
-## Why this lowers the pain
+That is the shape it should have. **A boss is something you found by attacking**,
+not something you predicted. If your list is complete and tidy after an hour at
+your desk, you have written a table of contents and given it a new name.
+
+Some of what you find is small: a piece of notation, a tool you cannot drive, a
+definition you keep mis-remembering. Call those elite mobs, give them one line
+each and no ceremony, and do not let them become projects.
+
+## Kill conditions, written when you can
+
+For each thing you are fighting, write the check that ends it — one sentence,
+checkable by someone who is not you.
+
+You often cannot write this on the first attempt, and you should not pretend to.
+"Done" for a fight you have never had is a guess like everything else. Two or
+three attempts in, you will know what winning looks like, and *then* you write
+it down. What you must not do is leave it unwritten indefinitely: a fight with
+no kill condition stays open forever, which is the single most common way this
+mechanism fails.
+
+## Why any of this hurts less
 
 A hard subject hurts because failure feels total and unbounded. You do not know
-how much of the mountain you have left, so every failure is evidence about the
-whole mountain, and that is unbearable over months.
+how much is left, so every failure is evidence about the whole mountain and
+about you, and that is unbearable over months.
 
-A boss makes failure **small, expected and local**. Dying to a boss is not
-evidence about you. It is one attempt out of twenty on one fight out of nine,
-and everybody who beat that boss also died to it. The pain does not go away, but
-it stops being about your character, and that is most of what made it
-unbearable.
+An attempt makes failure **small, expected and local**. You did not fail at
+statistics. You failed at starting from a blank page, once, and you already know
+what you are changing. That is a survivable size, and surviving it is the entire
+reason you get to attempt number twenty.
 
 ## This week
 
-Convert one real subject into bosses — six to ten of them, not forty. Bring the
-sheet to week 9 along with your week 7 attempt log. In week 9 we make it hold a
-whole semester rather than an afternoon.
+Attack something. Five attempts minimum on a real subject, logged four lines
+each. Bring the log to week 9, along with whatever list of fights has grown out
+of it — and if the list changed shape halfway through, bring both versions.

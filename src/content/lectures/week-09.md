@@ -1,8 +1,9 @@
 ---
 title: The thing the ladder cannot do
 description:
-  A hundred hours of content becomes finishable when it becomes a sequence of
-  bosses. No rating system, however good, will do that for you
+  The ladder buys you the inside of thirty minutes and nothing past it. Getting
+  a grip on something too hard to start is the other half — and it is not
+  planning
 week: 9
 date: 2027-05-03T14:00:00+10:00
 teachers:
