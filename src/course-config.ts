@@ -55,9 +55,9 @@ export const courseMeta = slopCourseMetaSchema.parse({
   startDate: "2027-02-22",
   endDate: "2027-05-28",
   description:
-    "A course is 130 hours. So is a Souls game, and nobody finishes one of " +
-    "those on willpower. We take both reward structures apart — the ranked " +
-    "ladder and the two-minute death loop — build one that fits your own " +
-    "week, then point it at the course you stalled on and still need.",
+    "Putting 130 hours into a game is easy. Putting 130 hours into a course " +
+    "is not, and it is the same hours and the same person. The difference is " +
+    "how fast the reward arrives. Learn to build that reward, and finish a " +
+    "course the way you finish a game.",
   tags: ["game mechanics", "study design", "motivation"],
 }) satisfies CourseMetaInput;

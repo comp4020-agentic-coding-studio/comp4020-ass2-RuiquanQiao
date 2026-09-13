@@ -39,20 +39,36 @@ is not a plan. **The ladder cannot break a large task into small ones.** It
 never could. Rating systems rank performances; they have no opinion about what
 you should do next, and no amount of tuning will give them one.
 
-**Decomposition lives in the Souls half.** Before you start, a Souls game looks
-like an unmanageable amount of content — dozens of hours, an unknown number of
-areas, no visible end. You finish it anyway, and not through stamina. You finish
-it because it is a sequence of bosses, and each individual boss is a thing that
-*ends*. The mountain was never climbed; it was resolved into nine fights, and
-nine is a number a person can hold.
+**Getting started, and getting small, live in the Souls half** — and the thing
+to be exact about is that neither one is planning.
 
-That capacity — turning an amount of work you cannot face into a list of things
-that each terminate — is the single most valuable skill in this course, and it
-is the one the ladder was structurally incapable of teaching you.
+Nobody sits down in front of a new Souls boss and decomposes it. You walk
+through the fog and you die in ninety seconds. What ninety seconds gets you is
+**one** observation — *it always sweeps after the second swing* — because that
+is all a ninety-second attempt has room to carry. So the next attempt has one
+new goal. Then the next has one more.
+
+Twenty attempts later the boss is dead, and **you never made a plan**. The fight
+came apart into small pieces on its own, a lesson at a time, and it did that
+*because* the loop was short enough to only hold one lesson. Decomposition was
+an output of the attempt cycle, not an input to it.
+
+That matters for the obvious reason: when a subject is genuinely too hard to
+start, you cannot decompose it first. You do not know enough about it yet to
+know what its parts are. Any plan you write on day one is a guess, and a
+confident wrong plan is worse than none. What you can do is make an attempt
+short enough to survive, take the one thing it gives you, and go again.
+
+So the skill here is *how to get a grip on something too hard to start*, and
+how a thing that big becomes a thing that small. The ladder was structurally
+incapable of either.
 
 ## What to build
 
-A boss tree, and the honest version has three properties.
+A boss tree — but build it as a **record of what the attempts have told you so
+far**, not as a plan you write on day one and then execute. It should be mostly
+empty when you start and should get more detailed as you fail. Three properties
+follow from that.
 
 **It rolls up.** A boss's remaining work includes its children's. If you mark a
 parent done while its children are open, the tree is lying to you, and it will
