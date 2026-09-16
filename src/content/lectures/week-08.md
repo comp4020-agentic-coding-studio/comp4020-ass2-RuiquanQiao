@@ -1,9 +1,10 @@
 ---
 title: Attacking before you understand it
 description:
-  The paper version of the Souls loop — attack, take the one lesson, go again —
-  and how the list of what you are fighting grows out of that rather than
-  before it
+  The paper version of the Souls loop. You attack, you take the one lesson,
+  you go again.
+  The list of what you are fighting grows out of those attempts, instead of
+  being written before you have made any
 week: 8
 date: 2027-04-26T14:00:00+10:00
 teachers:

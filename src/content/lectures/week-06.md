@@ -1,5 +1,5 @@
 ---
-title: Why the hardest game is the one they finish
+title: Why the hardest game is the one people finish
 description:
   Souls games are punishing and sell to people who bounced off far gentler
   fighting games. The explanation is the length of the failure loop

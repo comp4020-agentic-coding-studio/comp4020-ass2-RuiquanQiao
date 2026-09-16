@@ -2,7 +2,8 @@
 title: The thirty-minute sitting, on paper
 description:
   Giving every minute of a study block a job, using nothing but a sheet of
-  paper — and why the paper version has to survive being done in eight seconds
+  paper. If filling it in takes longer than eight seconds you will stop doing
+  it, so eight seconds is the design constraint
 week: 4
 date: 2027-03-15T14:00:00+11:00
 teachers:

@@ -1,8 +1,9 @@
 ---
-title: Settlement
+title: The exam, and what it cannot tell you
 description:
-  The exam, and then the harder question — whether the mechanism caused the
-  result, and what you would cut from it
+  You sit an exam on what you covered, and then answer the harder question the
+  exam cannot. Did your mechanism cause that result, and what would you cut
+  from it now
 week: 12
 date: 2027-05-24T14:00:00+10:00
 teachers:

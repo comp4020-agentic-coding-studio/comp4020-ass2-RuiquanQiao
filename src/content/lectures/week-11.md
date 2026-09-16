@@ -1,8 +1,9 @@
 ---
 title: Both at once, and the ways your log will lie
 description:
-  Attempts find the fights, sittings do the work. The predictable failures of a
-  run's second week, and why your own records flatter you
+  Attempts find the fights and sittings do the work. What reliably goes wrong
+  in the second week of a run, and why your own records make you look better
+  than you were
 week: 11
 date: 2027-05-17T14:00:00+10:00
 teachers:

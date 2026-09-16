@@ -252,8 +252,25 @@ previous day in UTC and the check reads the wrong date. Daylight saving ends
 
 This is a course site, read by someone deciding whether to enrol. Not a pitch.
 
+**Explain, in order, like you are talking to one person.** Each sentence should
+follow from the one before it, and a reader should never have to stop and work
+out what a line meant. This is the rule I break most often and it has its own
+failure mode, described under The tell above: a compressed, quotable line that
+sounds like an insight and delivers less than the plain sentence it replaced.
+The week 6 deck shipped with a slide reading only **"The cruelty is the
+disguise"** — three words, nothing a student can act on — where the honest line
+is "the punishing game has the shortest loop of the three". Titles too:
+week 12 was called **"Settlement"**, which is a word, not a description of a
+week.
+
+When a heading or a slide needs a second read, it is wrong. Rewrite it as the
+sentence you would say out loud.
+
 - No exclamation marks. No "unlock", "supercharge", "level up your studies".
   The subject is games; the writing does not have to act like one.
+- **Watch the em-dash habit.** Two `—` clauses stacked in one sentence is how a
+  description stops being readable; nine of the twelve lecture descriptions had
+  it. Most of them wanted a full stop and a second sentence.
 - Prefer the specific failure to the general claim. "I have started chapter one
   three times since March" beats "students struggle with motivation".
 - The convenor's failures are on the site because they are the evidence. Keep

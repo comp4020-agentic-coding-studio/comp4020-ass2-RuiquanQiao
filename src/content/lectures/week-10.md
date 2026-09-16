@@ -1,8 +1,8 @@
 ---
 title: Choosing the thing you stalled on
 description:
-  The course you stopped, restarted and stopped again — and why the fact that
-  you still need it is exactly what makes it the right target
+  The course you stopped, restarted and stopped again. You still need it, and
+  that is exactly what makes it the right thing to point this at
 week: 10
 date: 2027-05-10T14:00:00+10:00
 teachers:

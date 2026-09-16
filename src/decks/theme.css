@@ -11,3 +11,44 @@
  * slide class you reach for (`_class: quote`), a code-heavy layout, a
  * background. */
 @import url("astro-theme-university/styles/deck.css");
+
+/* --- Vertical composition -------------------------------------------------
+ *
+ * Upstream leaves most slides hard against the top edge, and on a short slide
+ * that reads as a rendering fault rather than as a slide. Two separate causes,
+ * both in deck.css:
+ *
+ *   1. The base rule is `align-content: start` (L119), and the only thing that
+ *      overrides it for ordinary slides is `:has(h1)` (L322). Every slide led
+ *      by an `##` therefore pins to the top.
+ *   2. `.quote` is given `justify-content: center` (L437). The slide is a CSS
+ *      grid, so that is the INLINE axis — it does nothing vertically. The rule
+ *      looks like it centres a pull-quote and does not.
+ *
+ * A quote with two short lines was landing in the top third of a 720px slide
+ * with the remaining two thirds empty.
+ *
+ * Which slides to centre is a real decision, not a blanket fix. A deck where
+ * every heading sits at a different height makes the title jump on each
+ * advance, so slides carrying a heading and a body keep their stable top
+ * edge. What gets centred is the slides that are a single statement and
+ * nothing else — those are compositions, and an optical centre is where they
+ * belong.
+ *
+ * `.hero` (`end start`) and split layouts (which fill the slide) are excluded
+ * because both already place themselves deliberately. */
+.reveal .slides section.quote,
+.reveal .slides section.centered,
+.reveal .slides section.impact {
+  align-content: center;
+}
+
+/* The pull-quote and the line under it have to share a left edge.
+ * `.quote blockquote` is 80% wide and auto-centred upstream, while the
+ * paragraph that follows it sits at the slide's own gutter — so the quote was
+ * indented and its follow-up line was not, by about 130px, which reads as a
+ * misalignment rather than as an indent. Full width, flush left, one edge. */
+.reveal .slides section.quote blockquote {
+  width: 100%;
+  margin-inline: 0;
+}

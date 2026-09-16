@@ -1,8 +1,9 @@
 ---
 title: A ladder you can actually see
 description:
-  Why a timer app has never changed anyone's semester, what a coded mechanism
-  buys that paper cannot, and the refusals that make a ladder liveable
+  Why a timer app has never changed anyone's semester, what code can do that
+  paper cannot, and which tempting features you have to leave out to keep a
+  ladder worth living with
 week: 5
 date: 2027-03-22T14:00:00+11:00
 teachers:

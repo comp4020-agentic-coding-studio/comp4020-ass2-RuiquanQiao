@@ -1,9 +1,9 @@
 ---
 title: Anatomy of a thirty-minute match
 description:
-  Laning, roaming and objectives as three clocks running at once, so there is
-  never a minute in which the right thing to do is nothing — and the ranked
-  ladder bolted on top of them
+  Laning, roaming and objectives are three clocks running at once, which is why
+  a MOBA never gives you a minute where the right move is nothing. Then the
+  ranked ladder that sits on top of all three
 week: 2
 date: 2027-03-01T14:00:00+11:00
 teachers:
