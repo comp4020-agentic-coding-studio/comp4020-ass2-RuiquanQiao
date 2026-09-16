@@ -1,15 +1,15 @@
 ---
 title: Why the hardest game is the one people finish
 description:
-  Souls games are punishing and sell to people who bounced off far gentler
-  fighting games. The explanation is the length of the failure loop
+  Because a Souls boss is hard, you die in two minutes, so you find out you
+  were wrong in two minutes. Being hard is what makes the feedback fast
 week: 6
 date: 2027-03-29T14:00:00+11:00
 teachers:
   - yuki-aaltonen
 slides: /decks/week-06/
 spec:
-  - you can state the puzzle this lecture answers without using the word "difficulty"
+  - you can explain how being hard is what makes a Souls loop short, rather than something it overcomes
   - you can measure the failure loop of any game or task in two numbers
   - you can explain why a legible tell is worth more than a forgiving hitbox
 related:
@@ -22,16 +22,18 @@ Here is a fact about the games industry that ought to be strange.
 
 Souls games are, by reputation and largely in truth, the least accommodating
 mainstream games there are. They kill you constantly, explain almost nothing,
-and take the better part of a hundred hours. And a very large number of the
-people who finish one are ordinary players who previously bounced off fighting
-games — which are, by any mechanical measure, the easier thing to get into. A
-fighting game match is three minutes. You can play one badly and still have fun.
+and take the better part of a hundred hours. One boss can take fifteen or
+twenty attempts. Nothing in that description sounds like a game people finish.
 
-So the puzzle is not "why do hard games sell". It is: **why does the harder one
-retain the player the easier one lost?**
+So the puzzle is: **why does the harder game keep the player that a gentler one
+lost?**
 
-The answer has nothing to do with difficulty, and you should try to make the
-argument this lecture makes without using the word.
+The answer is the thing you would least expect, and it is the whole lecture:
+**because the boss is hard, you die in about two minutes.** You therefore find
+out you were wrong two minutes after starting, and you can be back in front of
+it fifteen seconds later. The difficulty is not an obstacle the game overcomes
+on its way to being enjoyable. The difficulty is what produces the short
+loop.
 
 ## Measure the loop, in two numbers
 
@@ -50,8 +52,10 @@ time to *finding out whether it mattered* is days.
 
 An assignment: three weeks to failure, and no retry at all.
 
-The Souls loop is short. That is the whole trick, and it is disguised as
-cruelty.
+The Souls loop is short **because** the boss is hard. Those are not two facts
+about the game, they are one fact stated twice: an enemy that can kill you in
+two minutes is an enemy that can tell you that you were wrong in two
+minutes.
 
 ## The size of the lesson
 

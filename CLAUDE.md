@@ -31,13 +31,37 @@ never allows it — waves every thirty seconds, a known price for leaving lane,
 objectives on a clock everyone can see. **There is never a minute in which the
 right thing to do is nothing.** Weeks 2–5 build that over your own sitting.
 
-**3. The Souls half is for getting started, and it is NOT planning.**
-Nobody decomposes a boss they have never fought. You die in ninety seconds;
-ninety seconds has room for exactly **one** observation, so the next attempt has
-exactly one new goal. Twenty attempts later the fight is dead and no plan was
-ever written. **Decomposition is an output of the attempt cycle, not an input
-to it** — which is precisely why it works on a subject too hard to start, where
-any plan written on day one is a guess off the table of contents.
+**3. Being hard is what makes the Souls loop fast. It is the cause, not an
+obstacle.**
+The chain runs in one direction and every page has to keep it pointing that
+way: **because the boss is hard, you die in a minute or two** → so you find out
+you were wrong in a minute or two → a minute or two is only long enough to
+remember **one** thing → *if I fix just that one thing, do I get through?* →
+you are already walking back in. Difficulty produces the short loop. It is not
+a cost the game pays for something else, and it is not irrelevant.
+> ✗ *"The answer has nothing to do with difficulty."* / *"The Souls loop is
+> short, and it is disguised as cruelty."* Both treat hardness and loop length
+> as independent, and one of them spends a whole slide denying the thing that
+> is actually doing the work. A disguise implies the cruelty is not real; it is
+> real, and it is the delivery mechanism. This reached the home page, week 6
+> and four slides.
+
+**3b. And that asks LESS of you than an easier game does.**
+A fighting game wants you to love it first — drill the combo, learn the frame
+data, find out days later in a real match whether it mattered. That works for
+people who already love the game enough to do unrewarded work. A Souls game
+asks for curiosity, which everyone has. That is the comparison, and it is why
+Souls games keep players that gentler games lost.
+> ✗ *"Fighting games are, by any mechanical measure, the easier thing to get
+> into — a match is three minutes and you can play one badly and still have
+> fun."* True and backwards: it argues the gentler game is easier, when the
+> point is that it demands something rare and the punishing one does not.
+
+**3c. The decomposition is an output, not an input.**
+Nobody decomposes a boss they have never fought. Twenty attempts later the
+fight is dead and no plan was ever written — which is precisely why it works on
+a subject too hard to start, where any plan written on day one is a guess off
+the table of contents.
 > ✗ *"A hundred hours becomes finishable once it is nine fights that each end."*
 > Top-down — and **"nine" was invented**, which is the same rule broken twice in
 > one sentence (see Numbers, below). The real counts make the opposite case:
