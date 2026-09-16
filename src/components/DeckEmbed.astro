@@ -4,14 +4,27 @@
 // The course's own site goes further than this — its `/lectures/week-N/` URL
 // *is* the deck, with no page around it. This template keeps lectures and
 // decks as separate routes, so the closest honest equivalent is to put the
-// deck on the page in its own frame and let it go fullscreen from there. A
-// link called "Open the slides" is a thing a reader has to decide to click.
+// deck on the page in its own frame and drive it from there.
 //
-// Below 40rem the frame is not shown at all. It is not a judgement about
-// phones: Reveal scales a fixed 1280x720 canvas, so at 390px the deck lands
-// as a 219px-tall letterbox with 8.8px body text, and showing it there would
-// be worse than honest about it. The reading version underneath is what a
-// phone gets, and it is derived from the same source.
+// The controls sit inside the frame, top-right, the way a video player's do.
+// Three things decided that and none of them is convention:
+//
+//  - Top-right is the only corner the slides do not use. `hero` slides lay
+//    out `end start`, every other slide starts top-left, and Reveal paints
+//    its progress bar along the bottom edge.
+//  - They are styled against the DECK, not the page. A deck page is
+//    `color-scheme: dark` whatever the site is set to, and an `impact` slide
+//    is a full-bleed gold fill, so the controls take a dark scrim with a
+//    hairline — legible on near-black and on gold, in both site schemes,
+//    which nothing keyed to `--at-bg` would be.
+//  - They are dimmed rather than hidden until hover. Hover-only controls are
+//    invisible to touch and unfindable by keyboard.
+//
+// There is deliberately no line of instructions. astromotion already shows a
+// first-run card inside the deck saying it is a Reveal deck, that the arrow
+// keys move it, and that `?` lists everything else. Printing that again in
+// the page chrome was two lines of wrapped text restating the deck.
+import Icon from "astro-theme-university/components/Icon.astro";
 import { withBase } from "astro-theme-university/url";
 
 interface Props {
@@ -26,25 +39,41 @@ const url = withBase(slides);
 <figure class="deck-embed">
   <div class="frame">
     <iframe src={url} title={`${title} — slide deck`} loading="lazy" allowfullscreen></iframe>
+
+    <div class="controls">
+      <button type="button" class="control" data-deck-fullscreen hidden>
+        <Icon name="expand" size={19} class="i-expand" aria-label="Show the deck full screen" />
+        <Icon name="collapse" size={19} class="i-collapse" aria-label="Leave full screen" />
+      </button>
+      <a class="control" href={url} target="_blank" rel="noopener">
+        <Icon name="open-new-window" size={19} aria-label="Open the deck in a new tab" />
+      </a>
+    </div>
   </div>
-  <figcaption>
-    <button type="button" class="fs" data-deck-fullscreen hidden>Fullscreen</button>
-    <a href={url}>Open the deck on its own</a>
-    <span class="hint">Click the deck, then <kbd>←</kbd> <kbd>→</kbd> to move. <kbd>S</kbd> for
-      presenter notes, <kbd>?</kbd> for everything else.</span>
-  </figcaption>
+
+  {/* Under 40rem the frame is not rendered at all, so the deck needs a way
+      out that is not a control on top of it. */}
+  <a class="standalone" href={url}>Open the deck</a>
 </figure>
 
 <script>
-  // The button ships hidden and is revealed here, so a browser without the
-  // Fullscreen API never shows a control that would do nothing. The link
-  // beside it needs no script at all and is the fallback.
+  // The fullscreen control ships hidden and is revealed here, so a browser
+  // without the API never shows something that would do nothing. The link
+  // beside it needs no script and is the fallback.
   for (const button of document.querySelectorAll<HTMLButtonElement>("[data-deck-fullscreen]")) {
-    const frame = button.closest(".deck-embed")?.querySelector("iframe");
+    const frame = button.closest(".frame") as HTMLElement | null;
     if (!frame?.requestFullscreen) continue;
     button.hidden = false;
+
     button.addEventListener("click", () => {
-      void frame.requestFullscreen().then(() => frame.focus());
+      if (document.fullscreenElement === frame) void document.exitFullscreen();
+      else void frame.requestFullscreen().then(() => frame.querySelector("iframe")?.focus());
+    });
+
+    // The icon reports the state rather than the action twice over: once the
+    // deck is full screen the only thing this button does is leave.
+    document.addEventListener("fullscreenchange", () => {
+      frame.classList.toggle("is-fullscreen", document.fullscreenElement === frame);
     });
   }
 </script>
@@ -54,10 +83,11 @@ const url = withBase(slides);
     margin: 2rem 0 2.5rem;
   }
 
-  /* The frame is the one place on this site that is deliberately a fixed
-     aspect: a 16:9 canvas shown at any other ratio is letterboxed by Reveal
-     itself, which looks like a layout bug rather than a slide. */
+  /* The one deliberately fixed aspect on this site: a 16:9 canvas shown at
+     any other ratio gets letterboxed by Reveal itself, which reads as a
+     layout bug rather than as a slide. */
   .frame {
+    position: relative;
     aspect-ratio: 16 / 9;
     border: 1px solid var(--at-border);
     border-radius: var(--at-border-radius);
@@ -72,56 +102,97 @@ const url = withBase(slides);
     border: 0;
   }
 
-  figcaption {
+  .frame:fullscreen {
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .controls {
+    position: absolute;
+    inset-block-start: 0.65rem;
+    inset-inline-end: 0.65rem;
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem 1rem;
-    margin-block-start: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--at-text-secondary);
+    gap: 0.3rem;
+    opacity: 0.5;
+    transition: opacity 120ms ease;
   }
 
-  .hint {
-    flex: 1 1 14rem;
+  .frame:hover .controls,
+  .controls:focus-within {
+    opacity: 1;
   }
 
-  kbd {
-    font: inherit;
-    border: 1px solid var(--at-border);
-    border-radius: 3px;
-    padding: 0 0.3em;
+  /* Sized against the deck's own dark surface, so these values are literal
+     rather than tokens on purpose: there is no `--at-*` pair that means "ink
+     on a slide", and the slide underneath is near-black or brand gold with
+     no relation to the page's scheme. */
+  .control {
+    display: grid;
+    place-items: center;
+    inline-size: 2.15rem;
+    block-size: 2.15rem;
+    border-radius: var(--at-border-radius);
+    border: 1px solid rgb(255 255 255 / 20%);
+    background: rgb(12 10 8 / 62%);
+    color: rgb(245 240 232 / 92%);
+    cursor: pointer;
+    padding: 0;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
   }
 
-  /* The brand gold is 3.44:1 on the light surface, which is display-type
-     only. Anything at this size derives a darker/lighter arm instead —
-     see the colour rule in CLAUDE.md. */
-  .fs,
-  figcaption a {
+  .control:hover {
+    background: rgb(12 10 8 / 85%);
+    color: #fff;
+    border-color: rgb(255 255 255 / 38%);
+  }
+
+  .control:focus-visible {
+    outline: 2px solid var(--at-primary);
+    outline-offset: 2px;
+  }
+
+  /* `:global` because the <svg> is emitted by the theme's Icon component, and
+     Astro only stamps its scope attribute on elements in this file's own
+     template. Without it the rule silently matches nothing and BOTH icons
+     paint on top of each other. The `.control` prefix keeps it scoped in
+     practice. */
+  .control :global(.i-collapse) {
+    display: none;
+  }
+
+  .frame.is-fullscreen .control :global(.i-expand) {
+    display: none;
+  }
+
+  .frame.is-fullscreen .control :global(.i-collapse) {
+    display: block;
+  }
+
+  /* The brand gold is 3.44:1 on the light surface, so anything at text size
+     takes the derived arm — see the colour rule in CLAUDE.md. */
+  .standalone {
+    display: none;
     color: light-dark(oklch(from var(--at-primary) 42% c h), oklch(from var(--at-primary) 84% c h));
   }
 
-  .fs {
-    font: inherit;
-    background: none;
-    border: 1px solid currentcolor;
-    border-radius: var(--at-border-radius);
-    padding: 0.2em 0.7em;
-    cursor: pointer;
-  }
-
-  .fs:hover {
-    background: var(--at-bg-alt);
-  }
-
-  /* Below the breakpoint the frame is gone, so the Fullscreen button has
-     nothing to act on — it would try to fullscreen a display:none iframe.
-     The link beside it still works and is the whole control set here. */
+  /* Reveal scales a fixed 1280x720 canvas, so at 390px the deck lands as a
+     219px letterbox with 8.8px body text. Below that the frame is not worth
+     showing and the reading version underneath is what a phone gets. */
   @media (width < 40rem) {
-    .frame,
-    .hint,
-    .fs {
+    .frame {
       display: none;
+    }
+
+    .standalone {
+      display: inline;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .controls {
+      transition: none;
     }
   }
 </style>
