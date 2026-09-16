@@ -1,0 +1,141 @@
+---
+// The deck as something you can read, on a phone or anywhere else.
+//
+// Derived at build time from the same `.deck.mdx` the slides come from, so
+// there is no second copy of the argument to keep true. See src/lib/deck-text.ts
+// for the parse and for why this exists at all.
+import { readDeck } from "../lib/deck-text";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const { slides } = readDeck(slug);
+---
+
+<section class="reading" aria-labelledby={`reading-${slug}`}>
+  <h2 id={`reading-${slug}`}>The slides, as text</h2>
+  <p class="why">
+    Every slide in order, with a description of each figure. Generated from the deck
+    source, so it cannot fall behind it.
+  </p>
+
+  <ol>
+    {
+      slides.map((slide) => (
+        <li class:list={["slide", slide.kind]}>
+          <span class="n" aria-hidden="true">{slide.n}</span>
+          <div class="body">
+            {slide.heading && <h3 set:html={slide.heading} />}
+            {slide.blocks.map((block) =>
+              block.type === "list" ? (
+                <ul>
+                  {block.items?.map((item) => (
+                    <li set:html={item} />
+                  ))}
+                </ul>
+              ) : block.type === "quote" ? (
+                <blockquote>
+                  <p set:html={block.html} />
+                </blockquote>
+              ) : (
+                <p set:html={block.html} />
+              ),
+            )}
+            {slide.figure && (
+              <p class="figure">
+                <span class="tag">Figure</span>
+                {slide.figure}
+              </p>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .reading {
+    margin-block-start: 2.5rem;
+    border-block-start: 1px solid var(--at-border);
+    padding-block-start: 1.5rem;
+  }
+
+  .why {
+    color: var(--at-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  ol {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+  }
+
+  .slide {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0 0.75rem;
+    padding-block: 1.1rem;
+    border-block-start: 1px solid var(--at-border);
+  }
+
+  .n {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    color: var(--at-text-muted);
+    font-size: 0.9rem;
+    padding-block-start: 0.35rem;
+  }
+
+  .body > :first-child {
+    margin-block-start: 0;
+  }
+
+  .body > :last-child {
+    margin-block-end: 0;
+  }
+
+  /* The theme colours headings with the brand gold, which is 3.44:1 on the
+     light surface. That is fine for an h1 or h2 at display size and not fine
+     here: 19.8px at weight 600 misses the 18.66px bold threshold, so it owes
+     the full 4.5:1. Measured 3.44:1 and failed before this line existed.
+     Worth noting how it got in — no literal colour was written anywhere. It
+     was inherited by choosing `h3`, which is a way to break the colour rule
+     that the rule as written did not cover. */
+  h3 {
+    font-size: 1.1rem;
+    margin-block: 0 0.4rem;
+    color: light-dark(oklch(from var(--at-primary) 42% c h), oklch(from var(--at-primary) 84% c h));
+  }
+
+  /* The two slide classes that carry the argument rather than explain it.
+     On a slide they are a full-bleed brand fill and a rule; in a list they
+     need to read as emphasis without becoming a second heading level. */
+  .impact .body,
+  .quote .body {
+    border-inline-start: 3px solid var(--at-primary);
+    padding-inline-start: 0.9rem;
+  }
+
+  blockquote {
+    margin: 0;
+    font-style: italic;
+  }
+
+  .figure {
+    font-size: 0.9rem;
+    color: var(--at-text-secondary);
+  }
+
+  .tag {
+    display: inline-block;
+    margin-inline-end: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: light-dark(oklch(from var(--at-primary) 42% c h), oklch(from var(--at-primary) 84% c h));
+  }
+</style>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900"
+     role="img" aria-label="Forty faint horizontal lines and one bright gold line among them: everything a long session produced, against the one thing short enough to keep">
+  <!-- Divider for the second half of the argument: how big is the lesson?
+       Forty grey lines are three hours of study you cannot summarise. The one
+       gold line is ninety seconds. -->
+  <defs>
+    <linearGradient id="s-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6b6154" stop-opacity="0"/>
+      <stop offset="18%" stop-color="#95897a" stop-opacity="0.78"/>
+      <stop offset="82%" stop-color="#95897a" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#6b6154" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="s-gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b97d1c" stop-opacity="0"/>
+      <stop offset="14%" stop-color="#e0a94a" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#e0a94a" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#b97d1c" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="s-glow" x="-10%" y="-400%" width="120%" height="900%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <radialGradient id="s-vig" cx="50%" cy="46%" r="76%">
+      <stop offset="0%" stop-color="#15120f"/>
+      <stop offset="70%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#070605"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#s-vig)"/>
+
+  <!-- The grey ones. Ragged lengths, because none of them finished anything. -->
+  <g fill="url(#s-fade)">
+    <rect x="150" y="96" width="1180" height="5"/>
+    <rect x="150" y="128" width="980" height="5"/>
+    <rect x="150" y="160" width="1290" height="5"/>
+    <rect x="150" y="192" width="760" height="5"/>
+    <rect x="150" y="224" width="1120" height="5"/>
+    <rect x="150" y="256" width="1330" height="5"/>
+    <rect x="150" y="288" width="890" height="5"/>
+    <rect x="150" y="320" width="1220" height="5"/>
+    <rect x="150" y="352" width="1040" height="5"/>
+    <rect x="150" y="384" width="700" height="5"/>
+    <rect x="150" y="416" width="1270" height="5"/>
+    <rect x="150" y="448" width="960" height="5"/>
+    <rect x="150" y="512" width="1150" height="5"/>
+    <rect x="150" y="544" width="820" height="5"/>
+    <rect x="150" y="576" width="1310" height="5"/>
+    <rect x="150" y="608" width="1010" height="5"/>
+    <rect x="150" y="640" width="740" height="5"/>
+    <rect x="150" y="672" width="1240" height="5"/>
+    <rect x="150" y="704" width="930" height="5"/>
+    <rect x="150" y="736" width="1180" height="5"/>
+    <rect x="150" y="768" width="860" height="5"/>
+    <rect x="150" y="800" width="1090" height="5"/>
+  </g>
+
+  <!-- The one you kept. -->
+  <rect x="150" y="474" width="1100" height="10" fill="url(#s-gold)" filter="url(#s-glow)" opacity="0.8"/>
+  <rect x="150" y="474" width="1100" height="10" fill="url(#s-gold)"/>
+  <circle cx="1268" cy="477" r="7" fill="#e0a94a"/>
+</svg>

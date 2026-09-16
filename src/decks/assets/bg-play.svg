@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900"
+     role="img" aria-label="Twenty tally marks scratched into dark stone in four groups of five, counting deaths rather than wins">
+  <!-- The closing slide: one boss, twenty deaths, one written line each.
+       Twenty marks, because that is the homework, and the count is the point:
+       the deaths are the data, so they are what gets tallied. -->
+  <defs>
+    <radialGradient id="p-vig" cx="64%" cy="34%" r="86%">
+      <stop offset="0%" stop-color="#1b1611"/>
+      <stop offset="58%" stop-color="#0e0c0a"/>
+      <stop offset="100%" stop-color="#070605"/>
+    </radialGradient>
+    <filter id="p-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="9" result="g"/>
+      <feColorMatrix in="g" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.055"/></feComponentTransfer>
+    </filter>
+    <filter id="p-scratch" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.012" numOctaves="3" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="p-emberglow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="54"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#p-vig)"/>
+  <rect width="1600" height="900" filter="url(#p-grain)" opacity="0.9"/>
+
+  <!-- An ember low and right: the bonfire you keep coming back to. -->
+  <ellipse cx="1330" cy="700" rx="150" ry="90" fill="#b97d1c" opacity="0.32" filter="url(#p-emberglow)"/>
+
+  <!-- Four groups of five. The fifth of each group is the stroke across. -->
+  <g stroke="#e7b656" stroke-width="13" stroke-linecap="round" filter="url(#p-scratch)">
+    <g opacity="0.92">
+      <line x1="880" y1="232" x2="874" y2="342"/>
+      <line x1="906" y1="228" x2="903" y2="340"/>
+      <line x1="932" y1="233" x2="930" y2="344"/>
+      <line x1="958" y1="229" x2="955" y2="339"/>
+      <line x1="866" y1="348" x2="972" y2="224"/>
+    </g>
+    <g opacity="0.86">
+      <line x1="1035" y1="230" x2="1030" y2="343"/>
+      <line x1="1061" y1="234" x2="1059" y2="339"/>
+      <line x1="1087" y1="228" x2="1084" y2="341"/>
+      <line x1="1113" y1="232" x2="1111" y2="344"/>
+      <line x1="1021" y1="346" x2="1127" y2="226"/>
+    </g>
+    <g opacity="0.8">
+      <line x1="1190" y1="233" x2="1185" y2="340"/>
+      <line x1="1216" y1="229" x2="1214" y2="344"/>
+      <line x1="1242" y1="234" x2="1239" y2="338"/>
+      <line x1="1268" y1="230" x2="1266" y2="342"/>
+      <line x1="1176" y1="347" x2="1282" y2="225"/>
+    </g>
+    <g opacity="0.74">
+      <line x1="1345" y1="231" x2="1340" y2="341"/>
+      <line x1="1371" y1="235" x2="1369" y2="343"/>
+      <line x1="1397" y1="229" x2="1394" y2="340"/>
+      <line x1="1423" y1="233" x2="1421" y2="342"/>
+      <line x1="1331" y1="345" x2="1437" y2="227"/>
+    </g>
+  </g>
+
+  <!-- The twenty-first attempt: started, not yet a death. -->
+  <line x1="1500" y1="232" x2="1495" y2="342" stroke="#8a8073" stroke-width="11"
+        stroke-linecap="round" stroke-dasharray="14 18" opacity="0.7"/>
+</svg>

@@ -1,0 +1,127 @@
+---
+// The deck, on the lecture page, rather than behind a link.
+//
+// The course's own site goes further than this — its `/lectures/week-N/` URL
+// *is* the deck, with no page around it. This template keeps lectures and
+// decks as separate routes, so the closest honest equivalent is to put the
+// deck on the page in its own frame and let it go fullscreen from there. A
+// link called "Open the slides" is a thing a reader has to decide to click.
+//
+// Below 40rem the frame is not shown at all. It is not a judgement about
+// phones: Reveal scales a fixed 1280x720 canvas, so at 390px the deck lands
+// as a 219px-tall letterbox with 8.8px body text, and showing it there would
+// be worse than honest about it. The reading version underneath is what a
+// phone gets, and it is derived from the same source.
+import { withBase } from "astro-theme-university/url";
+
+interface Props {
+  slides: string;
+  title: string;
+}
+
+const { slides, title } = Astro.props;
+const url = withBase(slides);
+---
+
+<figure class="deck-embed">
+  <div class="frame">
+    <iframe src={url} title={`${title} — slide deck`} loading="lazy" allowfullscreen></iframe>
+  </div>
+  <figcaption>
+    <button type="button" class="fs" data-deck-fullscreen hidden>Fullscreen</button>
+    <a href={url}>Open the deck on its own</a>
+    <span class="hint">Click the deck, then <kbd>←</kbd> <kbd>→</kbd> to move. <kbd>S</kbd> for
+      presenter notes, <kbd>?</kbd> for everything else.</span>
+  </figcaption>
+</figure>
+
+<script>
+  // The button ships hidden and is revealed here, so a browser without the
+  // Fullscreen API never shows a control that would do nothing. The link
+  // beside it needs no script at all and is the fallback.
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-deck-fullscreen]")) {
+    const frame = button.closest(".deck-embed")?.querySelector("iframe");
+    if (!frame?.requestFullscreen) continue;
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      void frame.requestFullscreen().then(() => frame.focus());
+    });
+  }
+</script>
+
+<style>
+  .deck-embed {
+    margin: 2rem 0 2.5rem;
+  }
+
+  /* The frame is the one place on this site that is deliberately a fixed
+     aspect: a 16:9 canvas shown at any other ratio is letterboxed by Reveal
+     itself, which looks like a layout bug rather than a slide. */
+  .frame {
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--at-border);
+    border-radius: var(--at-border-radius);
+    overflow: hidden;
+    background: var(--at-dark-grey);
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-block-start: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--at-text-secondary);
+  }
+
+  .hint {
+    flex: 1 1 14rem;
+  }
+
+  kbd {
+    font: inherit;
+    border: 1px solid var(--at-border);
+    border-radius: 3px;
+    padding: 0 0.3em;
+  }
+
+  /* The brand gold is 3.44:1 on the light surface, which is display-type
+     only. Anything at this size derives a darker/lighter arm instead —
+     see the colour rule in CLAUDE.md. */
+  .fs,
+  figcaption a {
+    color: light-dark(oklch(from var(--at-primary) 42% c h), oklch(from var(--at-primary) 84% c h));
+  }
+
+  .fs {
+    font: inherit;
+    background: none;
+    border: 1px solid currentcolor;
+    border-radius: var(--at-border-radius);
+    padding: 0.2em 0.7em;
+    cursor: pointer;
+  }
+
+  .fs:hover {
+    background: var(--at-bg-alt);
+  }
+
+  /* Below the breakpoint the frame is gone, so the Fullscreen button has
+     nothing to act on — it would try to fullscreen a display:none iframe.
+     The link beside it still works and is the whole control set here. */
+  @media (width < 40rem) {
+    .frame,
+    .hint,
+    .fs {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720"
+     role="img" aria-label="Three feedback loops on a logarithmic time axis from one second to one month. A Souls boss: ninety seconds to failure, fifteen seconds back. A combo in the lab: three seconds to failure, but about two days before a real match tells you whether it mattered. An assignment: three weeks to failure, and the retry line runs off the axis because there is none.">
+  <!-- The slide's whole argument, drawn to scale. A linear axis cannot hold
+       these three together at all: ninety seconds and three weeks differ by
+       four and a half orders of magnitude, so the axis is log10 and each
+       gridline is a decade. That is itself the finding: the loops are not
+       a bit different, they are different in kind. (No long dashes in here:
+       XML forbids a double hyphen inside a comment.)
+       Top 170px is deliberately empty: the slide's own h2 sits there.
+       Geometry: x(t) = 330 + 135.4 * log10(t in seconds). -->
+  <defs>
+    <linearGradient id="c-never" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c98d2a" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c98d2a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="#0d0d0d"/>
+
+  <!-- Decade gridlines, labelled in units a person thinks in. -->
+  <g stroke="#8f8478" stroke-width="1.5" opacity="0.4">
+    <line x1="330" y1="230" x2="330" y2="636"/>
+    <line x1="571" y1="230" x2="571" y2="636"/>
+    <line x1="812" y1="230" x2="812" y2="636"/>
+    <line x1="998" y1="230" x2="998" y2="636"/>
+    <line x1="1113" y1="230" x2="1113" y2="636"/>
+  </g>
+  <line x1="330" y1="636" x2="1240" y2="636" stroke="#8f8478" stroke-width="2" opacity="0.7"/>
+  <g fill="#b3aa9e" font-family="'Public Sans', system-ui, sans-serif" font-size="21" text-anchor="middle">
+    <text x="330" y="668">1 s</text>
+    <text x="571" y="668">1 min</text>
+    <text x="812" y="668">1 hour</text>
+    <text x="998" y="668">1 day</text>
+    <text x="1113" y="668">1 week</text>
+  </g>
+
+  <!-- Legend. -->
+  <g font-family="'Public Sans', system-ui, sans-serif" font-size="21" fill="#b3aa9e">
+    <circle cx="340" cy="203" r="9" fill="#e0a94a"/>
+    <text x="358" y="211">time to failure</text>
+    <circle cx="560" cy="203" r="9" fill="#0d0d0d" stroke="#e0a94a" stroke-width="3"/>
+    <text x="578" y="211">time to retry</text>
+  </g>
+
+  <g font-family="'Public Sans', system-ui, sans-serif">
+    <!-- A Souls boss: both ends inside two minutes. -->
+    <text x="300" y="329" text-anchor="end" font-size="27" fill="#e6e6e6">A Souls boss</text>
+    <line x1="489" y1="320" x2="595" y2="320" stroke="#e0a94a" stroke-width="4"/>
+    <circle cx="595" cy="320" r="11" fill="#e0a94a"/>
+    <circle cx="489" cy="320" r="11" fill="#0d0d0d" stroke="#e0a94a" stroke-width="4"/>
+    <text x="489" y="291" text-anchor="middle" font-size="22" fill="#d9a441">15 s</text>
+    <text x="595" y="359" text-anchor="middle" font-size="22" fill="#d9a441">90 s</text>
+
+    <!-- A combo in the lab: cheap to fail, and the answer is days away. -->
+    <text x="300" y="449" text-anchor="end" font-size="27" fill="#e6e6e6">A combo in the lab</text>
+    <line x1="395" y1="440" x2="1039" y2="440" stroke="#8a5c13" stroke-width="4"/>
+    <circle cx="395" cy="440" r="11" fill="#e0a94a"/>
+    <circle cx="1039" cy="440" r="11" fill="#0d0d0d" stroke="#e0a94a" stroke-width="4"/>
+    <text x="395" y="411" text-anchor="middle" font-size="22" fill="#d9a441">3 s</text>
+    <text x="1039" y="411" text-anchor="middle" font-size="22" fill="#d9a441">next real match</text>
+
+    <!-- Your assignment: one attempt, and no second one. -->
+    <text x="300" y="569" text-anchor="end" font-size="27" fill="#e6e6e6">Your assignment</text>
+    <circle cx="1177" cy="560" r="11" fill="#e0a94a"/>
+    <text x="1177" y="531" text-anchor="middle" font-size="22" fill="#d9a441">3 weeks</text>
+    <line x1="1188" y1="560" x2="1256" y2="560" stroke="url(#c-never)" stroke-width="6"
+          stroke-dasharray="10 10"/>
+    <text x="1177" y="599" text-anchor="middle" font-size="22" fill="#b3aa9e">no retry</text>
+  </g>
+
+  <!-- Each gridline is a factor of ten, so say so rather than let the eye
+       read the gaps as equal. -->
+  <text x="330" y="700" font-family="'Public Sans', system-ui, sans-serif" font-size="19"
+        fill="#8f8478">Log scale — every gridline is ten times the last.</text>
+</svg>

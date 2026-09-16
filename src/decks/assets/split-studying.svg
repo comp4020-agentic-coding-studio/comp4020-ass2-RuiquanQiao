@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 720" width="512" height="720"
+     role="img" aria-label="A page under a lamp whose lines are illegible and printed twice, slightly out of register, beside a cold mug and a clock with no hands">
+  <!-- The panel for "most of your studying has neither". Two failures drawn
+       at once: you cannot name why the last three hours went wrong (the lines
+       are unreadable), and the material is not the same thing twice (every
+       line is printed again, out of register). The clock has no hands because
+       nothing about the session was measured. -->
+  <defs>
+    <radialGradient id="d-lamp" cx="50%" cy="22%" r="62%">
+      <stop offset="0%" stop-color="#b97d1c" stop-opacity="0.34"/>
+      <stop offset="60%" stop-color="#b97d1c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#b97d1c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="d-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#221e1c"/>
+      <stop offset="100%" stop-color="#131111"/>
+    </linearGradient>
+    <filter id="d-blur2"><feGaussianBlur stdDeviation="1.6"/></filter>
+  </defs>
+
+  <rect width="512" height="720" fill="url(#d-bg)"/>
+  <rect width="512" height="720" fill="url(#d-lamp)"/>
+
+  <!-- The page. -->
+  <g transform="rotate(-3 256 330)">
+    <rect x="86" y="120" width="340" height="430" rx="3" fill="#2d2619"/>
+    <rect x="86" y="120" width="340" height="430" rx="3" fill="none" stroke="#514630" stroke-width="2"/>
+
+    <!-- The ghost pass: the same lines, out of register. -->
+    <g fill="#95897a" opacity="0.4" filter="url(#d-blur2)" transform="translate(6 4)">
+      <rect x="116" y="166" width="242" height="7" rx="3"/>
+      <rect x="116" y="192" width="278" height="7" rx="3"/>
+      <rect x="116" y="218" width="198" height="7" rx="3"/>
+      <rect x="116" y="258" width="266" height="7" rx="3"/>
+      <rect x="116" y="284" width="226" height="7" rx="3"/>
+      <rect x="116" y="310" width="284" height="7" rx="3"/>
+      <rect x="116" y="336" width="172" height="7" rx="3"/>
+      <rect x="116" y="376" width="258" height="7" rx="3"/>
+      <rect x="116" y="402" width="212" height="7" rx="3"/>
+      <rect x="116" y="428" width="272" height="7" rx="3"/>
+      <rect x="116" y="454" width="188" height="7" rx="3"/>
+      <rect x="116" y="480" width="248" height="7" rx="3"/>
+    </g>
+
+    <!-- The pass you are actually reading. Also unreadable. -->
+    <g fill="#857a69" opacity="0.88">
+      <rect x="116" y="166" width="242" height="7" rx="3"/>
+      <rect x="116" y="192" width="278" height="7" rx="3"/>
+      <rect x="116" y="218" width="198" height="7" rx="3"/>
+      <rect x="116" y="258" width="266" height="7" rx="3"/>
+      <rect x="116" y="284" width="226" height="7" rx="3"/>
+      <rect x="116" y="310" width="284" height="7" rx="3"/>
+      <rect x="116" y="336" width="172" height="7" rx="3"/>
+      <rect x="116" y="376" width="258" height="7" rx="3"/>
+      <rect x="116" y="402" width="212" height="7" rx="3"/>
+      <rect x="116" y="428" width="272" height="7" rx="3"/>
+      <rect x="116" y="454" width="188" height="7" rx="3"/>
+      <rect x="116" y="480" width="248" height="7" rx="3"/>
+    </g>
+
+    <!-- A heading you have re-read three times and could not summarise. -->
+    <rect x="116" y="140" width="130" height="10" rx="4" fill="#a89e91" opacity="0.75"/>
+  </g>
+
+  <!-- Cold mug, and the ring it left. -->
+  <circle cx="404" cy="610" r="42" fill="none" stroke="#4f4636" stroke-width="3"/>
+  <circle cx="404" cy="610" r="31" fill="#1e1a16" stroke="#5f5445" stroke-width="2"/>
+  <path d="M 446 596 a 20 20 0 0 1 0 28" fill="none" stroke="#4f4636" stroke-width="4"/>
+  <ellipse cx="338" cy="648" rx="46" ry="12" fill="none" stroke="#463d31" stroke-width="2"/>
+
+  <!-- A clock with no hands: nothing about this session was measured. -->
+  <g transform="translate(96 618)">
+    <circle r="40" fill="#1c1815" stroke="#574c3c" stroke-width="3"/>
+    <g stroke="#776c5c" stroke-width="3" stroke-linecap="round">
+      <line y1="-32" y2="-24"/>
+      <line x1="32" x2="24"/>
+      <line y1="32" y2="24"/>
+      <line x1="-32" x2="-24"/>
+    </g>
+    <circle r="3.5" fill="#8a7f6e"/>
+  </g>
+</svg>

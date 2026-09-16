@@ -94,10 +94,18 @@ three brand values, and it ships a light/dark toggle driven by
 3.44:1 on the light surface.** That is display-type-only: fine for an `h1` or
 `h2`, below the 4.5:1 floor for anything at body size, and 18px bold does *not*
 reach the 18.66px that would let it use the 3:1 large-text floor. I have reached
-for it as body-sized text three times — the table header (2.42:1), the attempts
-column and the slider label (3.16:1). For coloured text below display size,
-derive: `light-dark(oklch(from var(--at-primary) 42% c h), oklch(from
+for it as body-sized text **four** times — the table header (2.42:1), the
+attempts column, the slider label (3.16:1), and the reading version's slide
+headings (3.44:1). For coloured text below display size, derive:
+`light-dark(oklch(from var(--at-primary) 42% c h), oklch(from
 var(--at-primary) 84% c h))`.
+
+**The fourth one wrote no colour at all**, which is why the rule above is not
+sufficient on its own. `DeckReading` used `h3` for a list-item heading, the
+theme colours every heading with the brand gold, and 19.8px at weight 600 misses
+the 18.66px bold threshold by a hair — so it owed the full 4.5:1 and delivered
+3.44:1. **So: a small heading is a colour decision even when you never touch
+`color`.** Any `h3`–`h6` below ~24px needs the derived arm set explicitly.
 
 A literal colour looks correct in whichever scheme I happened to be in and is
 wrong or invisible in the other. I have made exactly this mistake before, in
@@ -126,9 +134,48 @@ should not have trusted:
 **axe passing is not a contrast check.** It cannot resolve `oklch()` inside
 `light-dark()`, so it files those pairs as incomplete. It passed 2.42:1.
 
-One exception, and it is the only one: `src/assets/images/card.svg` uses literal
-hex. It is rasterised for link-preview scrapers, so there is no theme to follow
-and no toggle to survive. The values are the Slop palette written out.
+Two exceptions, and they are the only ones: `src/assets/images/card.svg`, which
+is rasterised for link-preview scrapers, and everything in `src/decks/assets/`.
+Both are loaded as images rather than as markup, so they are isolated documents
+with no access to the page's custom properties and no toggle to survive. Deck
+pages are dark-only in any case. The values are the Slop palette written out.
+
+---
+
+## Deck artwork
+
+Every slide background, split panel and figure is authored SVG in
+`src/decks/assets/`, referenced with astromotion's `![bg]` syntax. Three things
+about it, each of which cost something.
+
+**An SVG behind `background-image` fails silently.** No console error, no
+network error, no layout shift — the browser reports a broken image and paints
+nothing, which is indistinguishable from a slide that was designed plain. The
+only way to see it is to open the file as a page and read the parser error.
+
+**XML forbids a double hyphen inside a comment, and this repo produces them two
+ways.** The house em-dash style is `---`, and every design token is called
+`--at-something`, so a comment explaining which token a literal hex stands in
+for is enough to break the file. It has happened three times: once writing the
+colour rationale, twice using the em-dash. `spec/course.test.ts` now checks
+comment hygiene, tag balance, bare ampersands, `viewBox` and `aria-label` on
+every asset, plus that each one is referenced by a deck, reaches `dist/`, and
+comes out with a base-absolute URL.
+
+**Everything I draw comes out too dark.** All eight assets measured a mean
+luminance of 14–24 out of 255 on the first pass, and the fighting-game panel
+had only **3.8%** of its pixels above a visible threshold — beside body copy it
+read as a black bar. Targets that worked: a `bg-*` full-bleed sits under a
+scrim and white text, so 8–12% lit is right; a `split-*` panel is looked *at*,
+and needs mean ≥ 35 and ≥ 15% lit. Measure it rather than judging by eye on a
+bright monitor — paint the SVG into a canvas and read the pixels back.
+
+**Diagrams, not screenshots.** A frame of a boss arena shows nothing about the
+loop, and shipping FromSoftware or Riot stills on a public university site is a
+licensing problem for a marker to notice. Every figure here is drawn to make one
+claim legible — the loop comparison is on a log axis because ninety seconds and
+three weeks are four and a half orders of magnitude apart and no linear axis can
+hold both.
 
 ---
 
@@ -219,8 +266,9 @@ This is a course site, read by someone deciding whether to enrol. Not a pitch.
 
 ## Windows
 
-This machine is Git Bash on Windows, and `astro-theme-university@v0.13.2` cannot
-build here without two local patches:
+This machine is Git Bash on Windows, and neither
+`astro-theme-university@v0.13.2` nor `astromotion@v0.23.0` builds here
+correctly without local patches:
 
 ```bash
 bash /e/ANU/COMP8020/.tools/patch-theme-win.sh   # after every pnpm install
@@ -233,10 +281,24 @@ fails to apply during a CI install turns the deploy red, and a red deploy costs
 the shipped mark outright. The script and the full diagnosis live in
 `/e/ANU/COMP8020/CLAUDE.md`.
 
-The second bug is worth knowing about because it lies: it surfaces as axe
-failing `document-title`, `html-has-lang` and `region` on some pages, which
-reads like a content problem. It is a path-separator bug that ships every
-`.md`/`.mdx` page under `src/pages/` with no layout at all.
+Two of the three are worth knowing individually, because neither says what it
+is.
+
+The theme's second bug **lies**: it surfaces as axe failing `document-title`,
+`html-has-lang` and `region` on some pages, which reads like a content problem.
+It is a path-separator bug that ships every `.md`/`.mdx` page under
+`src/pages/` with no layout at all.
+
+astromotion's is the same family in the opposite direction, and it **only
+breaks locally**. `remark-deck-bg.ts` makes `![bg](./assets/x.svg)` into a
+base-absolute URL by probing for `/src/` in a path `node:path.resolve` has
+already normalised to backslashes, so on Windows the probe is always `-1`, the
+rewrite is skipped, and the browser resolves `./assets/x.svg` against
+`/decks/<slug>/` and 404s. ubuntu CI gets it right. **So the local build is the
+one that lies here** — every piece of slide artwork is invisible on this machine
+and correct in production, which is the worst way round for authoring it.
+`spec/course.test.ts` asserts the rewritten shape so the patch cannot silently
+fall off.
 
 ---
 

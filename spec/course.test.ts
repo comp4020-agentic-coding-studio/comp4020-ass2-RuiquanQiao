@@ -9,7 +9,7 @@
 //
 // Everything here reads `dist/`, so it asserts what shipped rather than what
 // the source intended. `pnpm test` builds first.
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -114,6 +114,113 @@ describe("the deck", () => {
       if (typeof slides !== "string") continue;
       const built = resolve("dist", slides.replace(/^\//, ""), "index.html");
       expect(existsSync(built), `${l.id} links ${slides}, which did not build`).toBe(true);
+    }
+  });
+});
+
+describe("deck artwork", () => {
+  // Every background and split panel on a slide is authored SVG, and an SVG
+  // behind `background-image` fails *silently*: the browser reports a broken
+  // image, paints nothing, and logs no console error, so a malformed file
+  // looks exactly like a slide that was designed plain.
+  //
+  // It has happened once already, and from a direction worth naming: XML
+  // forbids a double hyphen inside a comment, and every design token in this
+  // repo is called `-` `-at-something`. A comment explaining which token a
+  // literal hex value stands in for is therefore enough to break the file.
+  const assets = existsSync(resolve("src/decks/assets"))
+    ? readdirSync(resolve("src/decks/assets")).filter((f) => f.endsWith(".svg"))
+    : [];
+
+  it("has artwork to check", () => {
+    expect(assets.length).toBeGreaterThan(0);
+  });
+
+  it.each(assets)("%s is well-formed XML a browser will actually paint", (file) => {
+    const svg = readFileSync(resolve("src/decks/assets", file), "utf8");
+
+    // No DOM parser is reachable from here (neither jsdom nor linkedom is a
+    // dependency of this repo), so this checks the three things XML is strict
+    // about and HTML is not, which is where a hand-authored SVG actually
+    // breaks: comment hygiene, tag balance, and bare ampersands.
+    for (const [, body] of svg.matchAll(/<!--([\s\S]*?)-->/g)) {
+      expect(body.includes("--"), `${file}: double hyphen inside an XML comment`).toBe(false);
+    }
+    const withoutComments = svg.replace(/<!--[\s\S]*?-->/g, "");
+    expect(
+      /&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/.test(withoutComments),
+      `${file}: unescaped ampersand`,
+    ).toBe(false);
+
+    const stack: string[] = [];
+    for (const [, closing, name, , selfClosing] of withoutComments.matchAll(
+      /<(\/)?([a-zA-Z][\w:-]*)((?:[^>"']|"[^"]*"|'[^']*')*?)(\/)?>/g,
+    )) {
+      if (closing) expect(stack.pop(), `${file}: stray </${name}>`).toBe(name);
+      else if (!selfClosing) stack.push(name);
+    }
+    expect(stack, `${file}: tags left open`).toEqual([]);
+
+    const root = withoutComments.match(/<svg\b([^>]*)>/)?.[1] ?? "";
+    expect(/viewBox="/.test(root), `${file}: no viewBox, so it cannot scale`).toBe(true);
+    // These are not decoration. Each one is the diagram its slide argues from,
+    // so each one owes a description to anyone reading the deck with a screen
+    // reader or reading the text version of it on a phone.
+    expect(/aria-label="/.test(root), `${file}: no aria-label`).toBe(true);
+  });
+
+  it("is all referenced by a deck, and every reference resolves", () => {
+    const decks = readdirSync(resolve("src/decks")).filter((f) => f.endsWith(".deck.mdx"));
+    const referenced = new Set<string>();
+    for (const deck of decks) {
+      const src = readFileSync(resolve("src/decks", deck), "utf8");
+      for (const [, url] of src.matchAll(/!\[bg[^\]]*\]\(\.\/assets\/([^)]+)\)/g)) {
+        referenced.add(url);
+        expect(
+          existsSync(resolve("src/decks/assets", url)),
+          `${deck} references assets/${url}, which does not exist`,
+        ).toBe(true);
+      }
+    }
+    for (const file of assets) {
+      expect(referenced.has(file), `assets/${file} is not used by any deck`).toBe(true);
+    }
+  });
+
+  it("ships every referenced asset into the build", () => {
+    for (const file of assets) {
+      expect(
+        existsSync(resolve("dist/src/decks/assets", file)),
+        `assets/${file} never reached dist/`,
+      ).toBe(true);
+    }
+  });
+
+  // The Windows-only bug this catches: astromotion rewrites `./assets/x.svg`
+  // to a base-absolute URL by probing for "/src/" in a path node:path.resolve
+  // has already normalised to backslashes, so on this machine the rewrite is
+  // skipped and the browser resolves the relative URL against /decks/<slug>/.
+  // CI is ubuntu and gets it right, which is exactly why it needs asserting:
+  // the local build is the one that lies.
+  it("makes every background URL base-absolute, not relative to the deck route", () => {
+    for (const deck of readdirSync(resolve("src/decks")).filter((f) => f.endsWith(".deck.mdx"))) {
+      const slug = deck.replace(/\.deck\.mdx$/, "");
+      const html = readFileSync(resolve("dist/decks", slug, "index.html"), "utf8");
+      const urls = [...html.matchAll(/background-image:\s*url\('([^']+)'\)/g)].map(([, u]) => u);
+      expect(urls.length, `${slug}: no slide artwork at all`).toBeGreaterThan(0);
+      for (const url of urls) {
+        expect(url.startsWith("/"), `${slug}: ${url} is relative and will 404`).toBe(true);
+        const marker = "/src/decks/assets/";
+        const at = url.indexOf(marker);
+        expect(at, `${slug}: ${url} is not an asset path`).toBeGreaterThanOrEqual(0);
+        // Everything before the marker is the deploy base, which pages-base.ts
+        // derives from the git origin — so assert the shape, not the value.
+        expect(url.slice(at + 1)).toMatch(/^src\/decks\/assets\/[\w.-]+$/);
+        expect(
+          existsSync(resolve("dist", url.slice(at + 1))),
+          `${slug}: ${url} points at nothing in dist/`,
+        ).toBe(true);
+      }
     }
   });
 });
